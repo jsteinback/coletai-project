@@ -7,16 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jsteinback/coletai-project.git"
-  },
-  "author": "Jessica",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jsteinback/coletai-project/issues"
-  },
-  "homepage": "https://github.com/jsteinback/coletai-project#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
