@@ -10,7 +10,6 @@ var LocalStorage = require('node-localstorage').LocalStorage;
 localStorage = new LocalStorage('./scratch');
 
 const coletaiRoutes = require('./src/routes/routes');
-
 const app = express();
 const port = 3000;
 
