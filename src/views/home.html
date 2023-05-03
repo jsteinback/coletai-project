@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COLETAÍ - Página Inicial</title>
+
+    <!--ESTILOS-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-deep_orange.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="shortcut icon" href="/images/coletai-icon.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+        <div class="mdl-layout__header mdl-layout__header--waterfall">
+            <div class="mdl-layout__header-row">
+                <a href="" class="logo-link" id="logo-link">
+                    <img src="/images/branco.png" alt="Coletai" class="logo-imagem">
+                </a>
+                <div class="mdl-layout-spacer"></div>
+                <nav class="mdl-navigation">
+                    <div
+                        class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input" type="text" id="search-field">
+                        </div>
+                    </div>
+                    <a href="" class="mdl-navigation__link mdl-typography--text-uppercase">Pontos de Coleta</a>
+                    <a href="" class="mdl-navigation__link mdl-typography--text-uppercase">Meus Pontos de Coleta</a>
+                    <a href="" class="mdl-navigation__link mdl-typography--text-uppercase">Meu Perfil</a>
+                    <a href="/api/pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase" id="btn-sair">Sair</a>
+                </nav>
+            </div>
+        </div> <!--mdl-layout__header-->
+
+        <div class="mdl-layout__content">
+
+            <div class="mdl-typography--text-center">
+                <div class="coletai-slogan">slogan do site </br>
+                    descrver objetivo</div>
+            </div>
+
+            <div class="coletai-cards">
+                <div class="font-titulo-secao">Fique por dentro dos últimos pontos de coleta cadastrados:</div>
+                <div class="coletai-card-container mdl-grid">
+
+                    <div class="mdl-cell mdl-cell--4-col mdl-card mdl-shadow--3dp">
+                        <div class="mdl-card__media">
+                            <img src="/images/fundo-imagem.png">
+                        </div>
+                        <div class="mdl-card__title">
+                            <h4 class="mdl-card__title-text font-color-destaque">Ponto de Coleta 1</h4>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            <span class="mdl-typography--font-light mdl-typography--subhead">Lorem ipsum dolor sit amet.
+                                Ex tempora
+                                voluptatem aut molestias vitae sed nobis omnis sed quia rerum
+                                et cumque velit sit asperiores recusandae eos exercitationem enim!</span>
+                        </div>
+                        <div class="mdl-card__actions">
+                            <a class="mdl-button mdl-js-button card-link mdl-typography--font-light"
+                                href="api/visualizar-ponto/:id">
+                                Mais informações
+                                <i class="material-icons">chevron_right</i>
+                            </a>
+                        </div>
+                    </div>
+                </div> <!--coletai-card-container-->
+
+                <a href="/api/todos-pontos/:id" class="card-link link">
+                    <div class="font-titulo-secao">Visualizar todos</div>
+                </a>
+
+            </div> <!--coletai-cards-->
+
+            <div class="coletai-botao-central">
+                <a href="/api/cadastrar-ponto-de-coleta/:id">
+                    <button id="btn-cadastrar-ponto"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent coletai-botao-grande">
+                        Cadastrar novo Ponto de Coleta
+                    </button>
+                </a>
+            </div>
+
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo mdl-typography--text-uppercase">Coletaí</div>
+                </div>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="/api/sobre/:id">Sobre o Coletaí</a></li>
+                    </ul>
+                </div>
+            </footer>
+
+        </div> <!--mdl-layout__content-->
+
+    </div> <!--mdl-layout__content-->
+
+    <script src="/js/home.js"></script>
+
+</body>
+
+</html>

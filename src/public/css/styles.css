@@ -1,0 +1,198 @@
+.menu {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    line-height: 1;
+    color: white !important;
+}
+
+.menu-destaque {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    line-height: 1;
+    color: white;
+    font-weight: 500;
+}
+
+.logo-link {
+    display: inline-block;
+ }
+
+.logo-imagem {
+    width: 170px;
+}
+
+.mdl-layout {
+    background-color: aliceblue;
+}
+
+.font-color {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    color: dimgray;
+}
+
+.font-color-destaque {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    color: #FF5722
+}
+
+.font-titulo-secao {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    color: dimgray;
+    font-size: medium;
+}
+
+.font-nome-ponto {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    color: rgb(0, 150, 136);
+    font-weight: bold;
+    font-size: large;
+    margin-right: 20px;
+}
+
+.coletai-slogan {
+    font-size: 26px;
+    margin: 0 16px;
+    padding-top: 50px;
+    color: dimgray;
+}
+
+.coletai-cards {
+    padding: 80px;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.coletai-card-container .mdl-card__media {
+    overflow: hidden;
+    background: transparent;
+}
+
+.card-link {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    color: dimgray;
+}
+
+.coletai-botao-central {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+.coletai-botao-grande {
+    width: 300px;
+    height: 50px;
+    min-width: initial;
+    color: white !important;
+}
+
+.coletai-botao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white !important;
+}
+
+.coletai-botao-login {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white !important;
+}
+
+.coletai-botao-excluir {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f44235 !important;
+    color: white !important;
+}
+
+.espacamento {
+    margin-right: 200px;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.imagem-detalhes {
+    width: 600px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.imagem {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
+}
+
+.imagem-login {
+    background: white;
+    width: 290px;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-desabilitado {
+    color: rgb(158, 158, 158);
+}
+
+.icon-classificacao {
+    font-size: 30px;
+}
+
+.bt-localizacao {
+    font-size: 30px;
+}
+
+.icon-localizacao {
+    width: 30px;
+    height: 30px;
+}
+
+.bt-share {
+    color: white !important;
+}
+
+.mdl-radio__label {
+    margin-right: 40px;
+}
+
+.titulo-ponto {
+    display: flex;
+    align-items: center;
+}
+
+.campo-cadastro-grande {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    color: dimgray;
+}
+
+.campo-cadastro {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    color: dimgray;
+}
+
+.campo-cadastro-titulo {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    padding: 10px;
+    border-radius: 5px;
+    color: dimgray;
+    justify-content: right;
+    text-align: right;
+}

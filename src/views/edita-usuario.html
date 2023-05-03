@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COLETAÍ - Meu Perfil</title>
+
+    <!--ESTILOS-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-deep_orange.min.css">
+    <script src="https://cdn.jsdelivr.net/mdl.inputmask/1.2.2/md-inputmask.min.js"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="shortcut icon" href="/images/coletai-icon.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+        <div class="mdl-layout__header mdl-layout__header--waterfall">
+            <div class="mdl-layout__header-row">
+                <a href="pagina-inicial" class="logo-link">
+                    <img src="/images/branco.png" alt="Coletai" class="logo-imagem">
+                </a>
+                <div class="mdl-layout-spacer"></div>
+                <nav class="mdl-navigation">
+                    <div
+                        class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input" type="text" id="search-field">
+                        </div>
+                    </div>
+                    <a href="pontos-de-coleta" class="mdl-navigation__link mdl-typography--text-uppercase">Pontos de
+                        Coleta</a>
+                    <a href="meus-pontos-de-coleta" class="mdl-navigation__link mdl-typography--text-uppercase">Meus Pontos
+                        de Coleta</a>
+                    <a href="editar-usuario" class="mdl-navigation__link mdl-typography--text-uppercase">Meu
+                        Perfil</a>
+                    <a href="pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase" id="btnSair">Sair</a>
+                </nav>
+            </div>
+        </div> <!--mdl-layout__header-->
+
+        <div class="mdl-layout__content">
+            <div class="mdl-grid">
+
+                <div class="mdl-cell mdl-cell--3-col"></div>
+
+                <div class="mdl-cell mdl-cell--6-col">
+                    <h6 class="font-titulo-secao">Atualize seus dados:
+                    </h6>
+                    <!-- Formulário de cadastro -->
+                    <form action="#" class="mdl-grid">
+                        <!--Pessoa Física-->
+                        <!-- Campo de nome completo -->
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+                            id="1-nome-completo">
+                            <input class="mdl-textfield__input" type="text" id="nome-completo">
+                            <label class="mdl-textfield__label" for="nome-completo">Nome Completo</label>
+                        </div>
+
+                        <!-- Campo de CPF -->
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+                            id="1-cpf">
+                            <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="cpf" disabled>
+                            <label class="mdl-textfield__label" for="cpf">CPF</label>
+                            <span class="mdl-textfield__error">Apenas números</span>
+                        </div>
+
+                        <!-- Campo de data de nascimento -->
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+                            id="1-data-nascimento">
+                            <input class="mdl-textfield__input" type="date" id="data-nascimento" disabled>
+                            <label class="mdl-textfield__label" for="data-nascimento">Data de nascimento</label>
+                        </div>
+
+                        <!--Pessoa Jurídica-->
+                        <!-- Campo de razão social -->
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+                            id="2-razao-social" style="display:none;">
+                            <input class="mdl-textfield__input" type="text" id="razao-social">
+                            <label class="mdl-textfield__label" for="razao-social">Razão Social</label>
+                        </div>
+
+                        <!-- Campo de CNPJ -->
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+                            id="2-cnpj" style="display:none;">
+                            <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="cnpj" disabled>
+                            <label class="mdl-textfield__label" for="cnpj">CNPJ</label>
+                            <span class="mdl-textfield__error">Apenas números</span>
+                        </div>
+
+                        <!-- Campo de nome do responsável -->
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+                            id="2-nome-responsavel" style="display:none;">
+                            <input class="mdl-textfield__input" type="text" id="nome-responsavel">
+                            <label class="mdl-textfield__label" for="nome-responsavel">Nome do Responsável</label>
+                        </div>
+
+                        <!--Ambos os tipos de cadastro-->
+                        <!-- Campo de telefone -->
+                        <div
+                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="telefone" pattern="[0-9]*">
+                            <label class="mdl-textfield__label" for="telefone">Telefone</label>
+                            <span class="mdl-textfield__error">Apenas números</span>
+                        </div>
+
+                        <!-- Campo de CEP -->
+                        <div
+                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="cep">
+                            <label class="mdl-textfield__label" for="cep">CEP</label>
+                            <span class="mdl-textfield__error">Apenas números</span>
+                        </div>
+
+                        <!-- Campo de endereço -->
+                        <div
+                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="endereco">
+                            <label class="mdl-textfield__label" for="endereco">Endereço</label>
+                        </div>
+
+                        <!-- Campo de cidade -->
+                        <div
+                            class="mdl-cell mdl-cell--8-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="cidade">
+                            <label class="mdl-textfield__label" for="cidade">Cidade</label>
+                        </div>
+
+                        <!-- Campo de estado -->
+                        <div
+                            class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="estado">
+                            <label class="mdl-textfield__label" for="estado">Estado</label>
+                        </div>
+
+                        <!-- Campo de e-mail -->
+                        <div
+                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="email" id="email" disabled>
+                            <label class="mdl-textfield__label" for="email">E-mail</label>
+                        </div>
+
+                        <!-- Campo de senha -->
+                        <div
+                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="password" id="senha">
+                            <label class="mdl-textfield__label" for="senha">Senha</label>
+                        </div>
+
+                        <!-- Botão de cadastro -->
+                        <div class="mdl-cell mdl-cell--12-col mdl-grid">
+                            <div class="mdl-layout-spacer"></div>
+                            <button type="submit"
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored coletai-botao">
+                                Salvar
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="mdl-cell mdl-cell--3-col"></div>
+
+            </div> <!--mdl-grid-->
+
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo mdl-typography--text-uppercase">Coletaí</div>
+                </div>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="sobre">Sobre o Coletaí</a></li>
+                    </ul>
+                </div>
+            </footer>
+
+        </div> <!--mdl-layout__content-->
+
+    </div> <!--mdl-layout__content-->
+
+</body>
+
+</html>
