@@ -13,7 +13,7 @@
 
 .logo-link {
     display: inline-block;
- }
+}
 
 .logo-imagem {
     width: 170px;
@@ -69,6 +69,21 @@
 .card-link {
     font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
     color: dimgray;
+}
+
+.mdl-card__supporting-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+
+.div-link {
+    padding-bottom: 30px;
+    padding-left: 10px;
 }
 
 .coletai-botao-central {
@@ -146,6 +161,10 @@
     color: rgb(158, 158, 158);
 }
 
+.favoritado {
+    color: #F3DE22;
+}
+
 .icon-classificacao {
     font-size: 30px;
 }
@@ -195,4 +214,27 @@
     color: dimgray;
     justify-content: right;
     text-align: right;
+}
+
+.snackbar-erro {
+    background-color: #f44235;
+    color: white;
+}
+
+.snackbar-sucesso {
+    background-color: rgb(0, 150, 136);
+    color: white;
+}
+
+.mdl-dialog__title {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-size: medium;
+}
+
+.text-disabled {
+    color: dimgray !important;
+}
+
+.title-disabled {
+    color: rgb(0, 150, 136) !important;
 }

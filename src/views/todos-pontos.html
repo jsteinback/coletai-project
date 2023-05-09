@@ -23,7 +23,7 @@
 
         <div class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <a href="pagina-inicial" class="logo-link">
+                <a href="/api/pagina-inicial" class="logo-link">
                     <img src="/images/branco.png" alt="Coletai" class="logo-imagem">
                 </a>
                 <div class="mdl-layout-spacer"></div>
@@ -37,11 +37,9 @@
                             <input class="mdl-textfield__input" type="text" id="search-field">
                         </div>
                     </div>
-                    <a href="meus-pontos-de-coleta" class="mdl-navigation__link mdl-typography--text-uppercase">Meus Pontos
-                        de Coleta</a>
-                    <a href="editar-usuario" class="mdl-navigation__link mdl-typography--text-uppercase">Meu
-                        Perfil</a>
-                    <a href="pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase">Sair</a>
+                    <a href="/api/cadastrar-usuario"
+                        class="mdl-navigation__link mdl-typography--text-uppercase">Cadastrar-se</a>
+                    <a href="/api/login" class="mdl-navigation__link mdl-typography--text-uppercase">Entrar</a>
                 </nav>
             </div>
         </div> <!--mdl-layout__header-->
@@ -49,31 +47,12 @@
         <div class="mdl-layout__content">
 
             <div class="coletai-cards-todos">
-                <div class="coletai-card-container mdl-grid">
+                <div class="coletai-card-container mdl-grid" id="div-pai">
                     <div class="mdl-cell mdl-cell--12-col">
-                        <h6 class="font-titulo-secao">Gerencie seus pontos de coleta cadastrados:
+                        <h6 class="font-titulo-secao">Fique por dentro dos últimos Pontos de Coleta cadastrados:
                         </h6>
                     </div>
-                    <div class="mdl-cell mdl-cell--4-col mdl-card mdl-shadow--3dp">
-                        <div class="mdl-card__media">
-                            <img src="/images/fundo-imagem.png">
-                        </div>
-                        <div class="mdl-card__title">
-                            <h4 class="mdl-card__title-text font-color-destaque">Ponto de Coleta 1</h4>
-                        </div>
-                        <div class="mdl-card__supporting-text">
-                            <span class="mdl-typography--font-light mdl-typography--subhead">Lorem ipsum dolor sit amet.
-                                Ex tempora
-                                voluptatem aut molestias vitae sed nobis omnis sed quia rerum
-                                et cumque velit sit asperiores recusandae eos exercitationem enim!</span>
-                        </div>
-                        <div class="mdl-card__actions">
-                            <a class="mdl-button mdl-js-button card-link mdl-typography--font-light" href="visualizar-ponto">
-                                Mais informações
-                                <i class="material-icons">chevron_right</i>
-                            </a>
-                        </div>
-                    </div>
+
 
                 </div> <!--coletai-card-container-->
 
@@ -93,6 +72,8 @@
         </div> <!--mdl-layout__content-->
 
     </div> <!--mdl-layout__content-->
+
+    <script src="/js/todos-pontos.js"></script>
 
 </body>
 

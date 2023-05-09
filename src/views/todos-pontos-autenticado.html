@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COLETAÍ - Meus Pontos de Coleta</title>
+    <title>COLETAÍ - Pontos de Coleta</title>
 
     <!--ESTILOS-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -37,8 +37,8 @@
                             <input class="mdl-textfield__input" type="text" id="search-field">
                         </div>
                     </div>
-                    <a href="/api/pontos-de-coleta-auth"
-                        class="mdl-navigation__link mdl-typography--text-uppercase">Pontos de
+                    <a href="/api/meus-pontos-de-coleta"
+                        class="mdl-navigation__link mdl-typography--text-uppercase">Meus Pontos de
                         Coleta</a>
                     <a href="/api/meu-perfil" class="mdl-navigation__link mdl-typography--text-uppercase"
                         id="btn-perfil">Meu Perfil</a>
@@ -53,15 +53,17 @@
             <div class="coletai-cards-todos">
                 <div class="coletai-card-container mdl-grid" id="div-pai">
                     <div class="mdl-cell mdl-cell--12-col">
-                        <h6 class="font-titulo-secao">Gerencie seus pontos de coleta cadastrados:
+                        <h6 class="font-titulo-secao">Fique por dentro dos últimos Pontos de Coleta cadastrados:
                         </h6>
                     </div>
+
+
                 </div> <!--coletai-card-container-->
 
             </div> <!--coletai-cards-->
 
             <div class="coletai-botao-central">
-                <a href="/api/cadastrar-ponto-de-coleta">
+                <a href="cadastrar-ponto-de-coleta">
                     <button
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent coletai-botao-grande">
                         Cadastrar novo Ponto de Coleta
@@ -85,7 +87,7 @@
     </div> <!--mdl-layout__content-->
 
     <script src="/js/requisicao.js"></script>
-    <script src="/js/meus-pontos.js"></script>
+    <script src="/js/todos-pontos-autenticado.js"></script>
 
 </body>
 

@@ -27,15 +27,6 @@
             <div class="mdl-layout__header-row">
                 <div class="mdl-layout-spacer"></div>
                 <nav class="mdl-navigation">
-                    <div
-                        class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
-                        <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
-                            <i class="material-icons">search</i>
-                        </label>
-                        <div class="mdl-textfield__expandable-holder">
-                            <input class="mdl-textfield__input" type="text" id="search-field">
-                        </div>
-                    </div>
                     <a href="pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase">Página
                         Inicial</a>
                     <a href="cadastrar-usuario"
@@ -66,12 +57,6 @@
                         </form>
                     </div>
                     <div class="mdl-card__actions">
-                        <!--
-                            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent coletai-botao"
-                            href="home">
-                            Entrar
-                        </a>
-                        -->
                         <button id="bt-login" type="submit"
                             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent coletai-botao-login">
                             Entrar
@@ -79,8 +64,13 @@
                     </div>
                 </div>
             </div>
+
         </main>
 
+        <div id="snackbar-container" class="mdl-js-snackbar mdl-snackbar snackbar-erro">
+            <div class="mdl-snackbar__text"></div>
+            <button class="mdl-snackbar__action" type="button"></button>
+        </div>
 
         <!--RODAPÉ-->
         <footer class="mdl-mini-footer">

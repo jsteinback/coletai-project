@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COLETAÍ - Visualizar ponto de coleta</title>
+
+    <!--ESTILOS-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-deep_orange.min.css">
+    <script src="https://cdn.jsdelivr.net/mdl.inputmask/1.2.2/md-inputmask.min.js"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="shortcut icon" href="/images/coletai-icon.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+        <div class="mdl-layout__header mdl-layout__header--waterfall">
+            <div class="mdl-layout__header-row">
+                <a href="/api/home" class="logo-link">
+                    <img src="/images/branco.png" alt="Coletai" class="logo-imagem">
+                </a>
+                <div class="mdl-layout-spacer"></div>
+                <nav class="mdl-navigation">
+                    <div
+                        class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input" type="text" id="search-field">
+                        </div>
+                    </div>
+                    <a href="/api/pontos-de-coleta-auth"
+                        class="mdl-navigation__link mdl-typography--text-uppercase">Pontos de Coleta</a>
+                    <a href="/api/meus-pontos-de-coleta"
+                        class="mdl-navigation__link mdl-typography--text-uppercase">Meus Pontos de Coleta</a>
+                    <a href="/api/meu-perfil" class="mdl-navigation__link mdl-typography--text-uppercase"
+                        id="btn-perfil">Meu Perfil</a>
+                    <a href="/api/pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase"
+                        id="btn-sair">Sair</a>
+                </nav>
+            </div>
+        </div> <!--mdl-layout__header-->
+
+        <div class="mdl-layout__content">
+
+            <div class="mdl-grid">
+                <!--Título e Botão de Favorito-->
+                <div class="mdl-cell mdl-cell--1-col"></div>
+                <div class="mdl-cell mdl-cell--10-col titulo-ponto">
+                    <h5 class="font-nome-ponto mdl-typography--text-uppercase" id="nome"></h5>
+                    <button class="mdl-button mdl-js-button mdl-button--icon" id="btn-favoritar">
+                        <i class="material-icons icon-desabilitado">favorite</i>
+                    </button>
+                </div>
+                <div class="mdl-cell mdl-cell--1-col"></div>
+
+
+                <!--Imagem e Classificação e Compartilhamento-->
+                <div class="mdl-cell mdl-cell--1-col"></div>
+                <div class="mdl-cell mdl-cell--7-col imagem-detalhes">
+                    <img src="/images/loja-de-convenincia-.jpg" alt="Imagem" class="imagem">
+                </div>
+                <div class="mdl-cell mdl-cell--4-col">
+                    <div class="classificacao">
+                        <button class="mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons icon-desabilitado icon-classificacao">star</i>
+                        </button>
+                        <button class="mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons icon-desabilitado icon-classificacao">star</i>
+                        </button>
+                        <button class="mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons icon-desabilitado icon-classificacao">star</i>
+                        </button>
+                        <button class="mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons icon-desabilitado icon-classificacao">star</i>
+                        </button>
+                        <button class="mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons icon-desabilitado icon-classificacao">star</i>
+                        </button>
+                    </div>
+                    </br>
+                    <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent bt-share"
+                        href="https://api.whatsapp.com/send?text=Verifique%20este%20ponto%20de%20coleta!%20https://master.d2azmyt2ai8a09.amplifyapp.com/"
+                        target="_blank">
+                        <i class="material-icons">share</i> Compartilhe!
+                    </a>
+                </div>
+                <div class="mdl-cell mdl-cell--1-col"></div>
+
+
+                <form action="#" class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--1-col"></div>
+                    <div
+                        class="mdl-cell mdl-cell--10-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                        <textarea class="mdl-textfield__input text-disabled" type="text" rows="5"
+                            id="descricao"></textarea>
+                        <label class="mdl-textfield__label title-disabled" for="descricao">Descrição</label>
+                    </div>
+                    <div class="mdl-cell mdl-cell--1-col"></div>
+
+                    <div class="mdl-cell mdl-cell--1-col"></div>
+                    <div
+                        class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                        <input class="mdl-textfield__input text-disabled" type="text" id="responsavel" disabled>
+                        <label class="mdl-textfield__label title-disabled" for="responsavel-ponto">Nome do
+                            Responsável</label>
+                    </div>
+
+                    <div
+                        class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                        <input class="mdl-textfield__input text-disabled" type="text" id="endereco" disabled>
+                        <label class="mdl-textfield__label title-disabled" for="endereco-ponto">Endereço</label>
+                    </div>
+                    <div class="mdl-cell mdl-cell--1-col"></div>
+
+                    <div class="mdl-cell mdl-cell--1-col"></div>
+                    <div
+                        class="mdl-cell mdl-cell--3-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                        <input class="mdl-textfield__input text-disabled" type="text" id="cidade" disabled>
+                        <label class="mdl-textfield__label title-disabled" for="cidade-ponto">Cidade</label>
+                    </div>
+
+                    <div
+                        class="mdl-cell mdl-cell--2-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                        <input class="mdl-textfield__input text-disabled" type="text" id="estado" disabled>
+                        <label class="mdl-textfield__label title-disabled" for="estado-ponto">Estado</label>
+                    </div>
+
+                    <div
+                        class="mdl-cell mdl-cell--2-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                        <input class="mdl-textfield__input text-disabled" type="text" id="cep" disabled>
+                        <label class="mdl-textfield__label title-disabled" for="cep-ponto">CEP</label>
+                    </div>
+
+                    <div
+                        class="mdl-cell mdl-cell--3-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                        <input class="mdl-textfield__input text-disabled" type="text" id="telefone" disabled>
+                        <label class="mdl-textfield__label title-disabled" for="telefone-ponto">Telefone</label>
+                    </div>
+                    <div class="mdl-cell mdl-cell--1-col"></div>
+
+                </form>
+
+                <!--Comentários-->
+                <div class="mdl-cell mdl-cell--1-col"></div>
+                <div class="mdl-cell mdl-cell--10-col">Comentários:</div>
+                <div class="mdl-cell mdl-cell--1-col"></div>
+
+                <div id="snackbar-container" class="mdl-js-snackbar mdl-snackbar snackbar-erro">
+                    <div class="mdl-snackbar__text"></div>
+                    <button class="mdl-snackbar__action" type="button"></button>
+                </div>
+                <div id="snackbar-container-success" class="mdl-js-snackbar mdl-snackbar snackbar-sucesso">
+                    <div class="mdl-snackbar__text"></div>
+                    <button class="mdl-snackbar__action" type="button"></button>
+                </div>
+            </div> <!--mdl-grid-->
+
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo mdl-typography--text-uppercase">Coletaí</div>
+                </div>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="/api/sobre">Sobre o Coletaí</a></li>
+                    </ul>
+                </div>
+            </footer>
+
+        </div> <!--mdl-layout__content-->
+
+    </div> <!--mdl-layout__content-->
+
+    <script src="/js/requisicao.js"></script>
+    <script src="/js/visualizar-ponto-autenticado.js"></script>
+
+</body>
+
+</html>

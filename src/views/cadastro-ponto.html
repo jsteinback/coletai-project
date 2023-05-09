@@ -24,7 +24,7 @@
 
         <div class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <a href="pagina-inicial" class="logo-link">
+                <a href="/api/home" class="logo-link">
                     <img src="/images/branco.png" alt="Coletai" class="logo-imagem">
                 </a>
                 <div class="mdl-layout-spacer"></div>
@@ -38,13 +38,16 @@
                             <input class="mdl-textfield__input" type="text" id="search-field">
                         </div>
                     </div>
-                    <a href="pontos-de-coleta" class="mdl-navigation__link mdl-typography--text-uppercase">Pontos de
+                    <a href="/api/pontos-de-coleta-auth"
+                        class="mdl-navigation__link mdl-typography--text-uppercase">Pontos de
                         Coleta</a>
-                    <a href="meus-pontos-de-coleta" class="mdl-navigation__link mdl-typography--text-uppercase">Meus Pontos
+                    <a href="/api/meus-pontos-de-coleta"
+                        class="mdl-navigation__link mdl-typography--text-uppercase">Meus Pontos
                         de Coleta</a>
-                    <a href="editar-usuario" class="mdl-navigation__link mdl-typography--text-uppercase">Meu
+                    <a href="/api/meu-perfil" class="mdl-navigation__link mdl-typography--text-uppercase">Meu
                         Perfil</a>
-                    <a href="pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase">Sair</a>
+                    <a href="/api/pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase"
+                        id="btn-sair">Sair</a>
                 </nav>
             </div>
         </div> <!--mdl-layout__header-->
@@ -62,53 +65,55 @@
                     <form action="#" class="mdl-grid">
 
                         <div
-                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="nome-ponto">
+                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                            <input class="mdl-textfield__input" type="text" id="nome" maxlength="50">
                             <label class="mdl-textfield__label" for="nome-ponto">Nome</label>
                         </div>
 
                         <div
-                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <textarea class="mdl-textfield__input" type="text" rows="4" maxrows="6"
-                                id="descricao"></textarea>
+                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                            <textarea class="mdl-textfield__input" type="text" rows="4" maxrows="6" id="descricao"
+                                maxlength="400"></textarea>
                             <label class="mdl-textfield__label" for="descricao">Descrição</label>
                         </div>
 
                         <div
-                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="responsavel-ponto">
+                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                            <input class="mdl-textfield__input" type="text" id="responsavel" maxlength="50">
                             <label class="mdl-textfield__label" for="responsavel-ponto">Nome do Responsável</label>
                         </div>
 
                         <div
-                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="telefone-ponto" pattern="[0-9]*">
+                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                            <input class="mdl-textfield__input" type="text" id="telefone" pattern="[0-9]*"
+                                maxlength="11">
                             <label class="mdl-textfield__label" for="telefone-ponto">Telefone</label>
                             <span class="mdl-textfield__error">Apenas números</span>
                         </div>
 
                         <div
-                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="cep-ponto" pattern="[0-9]*">
+                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                            <input class="mdl-textfield__input" type="text" id="cep" pattern="[0-9]*"
+                                maxlength="8">
                             <label class="mdl-textfield__label" for="cep-ponto">CEP</label>
                             <span class="mdl-textfield__error">Apenas números</span>
                         </div>
 
                         <div
-                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="endereco-ponto">
+                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                            <input class="mdl-textfield__input" type="text" id="endereco" maxlength="150">
                             <label class="mdl-textfield__label" for="endereco-ponto">Endereço</label>
                         </div>
 
                         <div
-                            class="mdl-cell mdl-cell--8-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="cidade-ponto">
+                            class="mdl-cell mdl-cell--8-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                            <input class="mdl-textfield__input" type="text" id="cidade" maxlength="50">
                             <label class="mdl-textfield__label" for="cidade-ponto">Cidade</label>
                         </div>
 
                         <div
-                            class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="estado-ponto">
+                            class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                            <input class="mdl-textfield__input" type="text" id="estado" maxlength="2">
                             <label class="mdl-textfield__label" for="estado-ponto">Estado</label>
                         </div>
 
@@ -120,19 +125,24 @@
                             </div>
                         </div>
 
-                        <div class="mdl-cell mdl-cell--12-col mdl-grid">
-                            <div class="mdl-layout-spacer"></div>
-                            <button id="bt-cadastro-ponto" type="submit"
-                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent coletai-botao">
-                                Cadastrar
-                            </button>
-                        </div>
-
                     </form>
+
+                    <div class="mdl-cell mdl-cell--12-col mdl-grid">
+                        <div class="mdl-layout-spacer"></div>
+                        <button id="bt-cadastro-ponto" type="submit"
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent coletai-botao">
+                            Cadastrar
+                        </button>
+                    </div>
 
                 </div>
 
                 <div class="mdl-cell mdl-cell--3-col"></div>
+
+                <div id="snackbar-container" class="mdl-js-snackbar mdl-snackbar snackbar-erro">
+                    <div class="mdl-snackbar__text"></div>
+                    <button class="mdl-snackbar__action" type="button"></button>
+                </div>
 
             </div> <!--mdl-grid-->
 

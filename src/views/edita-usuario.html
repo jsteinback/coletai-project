@@ -24,7 +24,7 @@
 
         <div class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <a href="pagina-inicial" class="logo-link">
+                <a href="/api/home" class="logo-link">
                     <img src="/images/branco.png" alt="Coletai" class="logo-imagem">
                 </a>
                 <div class="mdl-layout-spacer"></div>
@@ -38,13 +38,13 @@
                             <input class="mdl-textfield__input" type="text" id="search-field">
                         </div>
                     </div>
-                    <a href="pontos-de-coleta" class="mdl-navigation__link mdl-typography--text-uppercase">Pontos de
+                    <a href="/api/pontos-de-coleta-auth" class="mdl-navigation__link mdl-typography--text-uppercase">Pontos de
                         Coleta</a>
-                    <a href="meus-pontos-de-coleta" class="mdl-navigation__link mdl-typography--text-uppercase">Meus Pontos
+                    <a href="/api/meus-pontos-de-coleta" class="mdl-navigation__link mdl-typography--text-uppercase">Meus
+                        Pontos
                         de Coleta</a>
-                    <a href="editar-usuario" class="mdl-navigation__link mdl-typography--text-uppercase">Meu
-                        Perfil</a>
-                    <a href="pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase" id="btnSair">Sair</a>
+                    <a href="/api/pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase"
+                        id="btn-sair">Sair</a>
                 </nav>
             </div>
         </div> <!--mdl-layout__header-->
@@ -61,46 +61,46 @@
                     <form action="#" class="mdl-grid">
                         <!--Pessoa Física-->
                         <!-- Campo de nome completo -->
-                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
-                            id="1-nome-completo">
-                            <input class="mdl-textfield__input" type="text" id="nome-completo">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder"
+                            id="nome-pf">
                             <label class="mdl-textfield__label" for="nome-completo">Nome Completo</label>
+                            <input class="mdl-textfield__input" type="text" id="nome-completo">
                         </div>
 
                         <!-- Campo de CPF -->
-                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
-                            id="1-cpf">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder"
+                            id="doc-pf">
                             <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="cpf" disabled>
                             <label class="mdl-textfield__label" for="cpf">CPF</label>
                             <span class="mdl-textfield__error">Apenas números</span>
                         </div>
 
                         <!-- Campo de data de nascimento -->
-                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
-                            id="1-data-nascimento">
-                            <input class="mdl-textfield__input" type="date" id="data-nascimento" disabled>
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder"
+                            id="comp-pf">
+                            <input class="mdl-textfield__input" type="date" id="data-nascimento">
                             <label class="mdl-textfield__label" for="data-nascimento">Data de nascimento</label>
                         </div>
 
                         <!--Pessoa Jurídica-->
                         <!-- Campo de razão social -->
-                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
-                            id="2-razao-social" style="display:none;">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder"
+                            id="nome-pj">
                             <input class="mdl-textfield__input" type="text" id="razao-social">
                             <label class="mdl-textfield__label" for="razao-social">Razão Social</label>
                         </div>
 
                         <!-- Campo de CNPJ -->
-                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
-                            id="2-cnpj" style="display:none;">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder"
+                            id="doc-pj">
                             <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="cnpj" disabled>
                             <label class="mdl-textfield__label" for="cnpj">CNPJ</label>
                             <span class="mdl-textfield__error">Apenas números</span>
                         </div>
 
                         <!-- Campo de nome do responsável -->
-                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
-                            id="2-nome-responsavel" style="display:none;">
+                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder"
+                            id="comp-pj">
                             <input class="mdl-textfield__input" type="text" id="nome-responsavel">
                             <label class="mdl-textfield__label" for="nome-responsavel">Nome do Responsável</label>
                         </div>
@@ -108,7 +108,7 @@
                         <!--Ambos os tipos de cadastro-->
                         <!-- Campo de telefone -->
                         <div
-                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
                             <input class="mdl-textfield__input" type="text" id="telefone" pattern="[0-9]*">
                             <label class="mdl-textfield__label" for="telefone">Telefone</label>
                             <span class="mdl-textfield__error">Apenas números</span>
@@ -116,61 +116,78 @@
 
                         <!-- Campo de CEP -->
                         <div
-                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="cep">
+                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                            <input class="mdl-textfield__input" type="text" id="cep" pattern="[0-9]*" maxlength="8">
                             <label class="mdl-textfield__label" for="cep">CEP</label>
                             <span class="mdl-textfield__error">Apenas números</span>
                         </div>
 
                         <!-- Campo de endereço -->
                         <div
-                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
                             <input class="mdl-textfield__input" type="text" id="endereco">
                             <label class="mdl-textfield__label" for="endereco">Endereço</label>
                         </div>
 
                         <!-- Campo de cidade -->
                         <div
-                            class="mdl-cell mdl-cell--8-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            class="mdl-cell mdl-cell--8-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
                             <input class="mdl-textfield__input" type="text" id="cidade">
                             <label class="mdl-textfield__label" for="cidade">Cidade</label>
                         </div>
 
                         <!-- Campo de estado -->
                         <div
-                            class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="estado">
+                            class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                            <input class="mdl-textfield__input" type="text" id="estado" maxlength="2">
                             <label class="mdl-textfield__label" for="estado">Estado</label>
                         </div>
 
                         <!-- Campo de e-mail -->
                         <div
-                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
                             <input class="mdl-textfield__input" type="email" id="email" disabled>
                             <label class="mdl-textfield__label" for="email">E-mail</label>
                         </div>
 
                         <!-- Campo de senha -->
                         <div
-                            class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
                             <input class="mdl-textfield__input" type="password" id="senha">
                             <label class="mdl-textfield__label" for="senha">Senha</label>
                         </div>
 
-                        <!-- Botão de cadastro -->
-                        <div class="mdl-cell mdl-cell--12-col mdl-grid">
-                            <div class="mdl-layout-spacer"></div>
-                            <button type="submit"
-                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored coletai-botao">
-                                Salvar
-                            </button>
+                        <!--
+                            <div
+                            class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                            <input class="mdl-textfield__input" type="password" id="checkSenha">
+                            <label class="mdl-textfield__label" for="senha">Confirme a Senha</label>
                         </div>
+                        -->
 
                     </form>
+
+                    <!-- Botão de cadastro -->
+                    <div class="mdl-cell mdl-cell--12-col mdl-grid">
+                        <div class="mdl-layout-spacer"></div>
+                        <button id="bt-salvar-usuario" type="submit"
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored coletai-botao">
+                            Salvar
+                        </button>
+                    </div>
 
                 </div>
 
                 <div class="mdl-cell mdl-cell--3-col"></div>
+
+                <div id="snackbar-container" class="mdl-js-snackbar mdl-snackbar snackbar-erro">
+                    <div class="mdl-snackbar__text"></div>
+                    <button class="mdl-snackbar__action" type="button"></button>
+                </div>
+                <div id="snackbar-container-success" class="mdl-js-snackbar mdl-snackbar snackbar-sucesso">
+                    <div class="mdl-snackbar__text"></div>
+                    <button class="mdl-snackbar__action" type="button"></button>
+                </div>
 
             </div> <!--mdl-grid-->
 
@@ -188,6 +205,9 @@
         </div> <!--mdl-layout__content-->
 
     </div> <!--mdl-layout__content-->
+
+    <script src="/js/requisicao.js"></script>
+    <script src="/js/edita-usuario.js"></script>
 
 </body>
 

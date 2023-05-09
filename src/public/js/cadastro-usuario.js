@@ -89,13 +89,22 @@ var script_pagina = function () {
         };
 
         fetch(url, options)
-            .then(response => response.json())
-            .then(data => {
-                const token = data.token;
-                if (token) {
-                    localStorage.setItem('token', token);
-                    window.location.href = data.redirectUrl;
+            .then(response => {
+                if (response.status === 422) {
+                    return response.json().then(data => {
+                        const snackbarContainer = document.querySelector('#snackbar-container')
+                        const snackbarData = {
+                            message: data.message,
+                            timeout: 2750
+                        }
+                        snackbarContainer.MaterialSnackbar.showSnackbar(snackbarData);
+                    })
+                } else {
+                    return response.json();
                 }
+            })
+            .then(data => {
+                window.location.href = data.redirectUrl; //redireciona pra página home autenticada
             })
             .catch(error => console.error(error));
 

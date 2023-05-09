@@ -23,7 +23,7 @@
 
     <div class="mdl-layout__header mdl-layout__header--waterfall">
       <div class="mdl-layout__header-row">
-        <a href="pagina-inicial" class="logo-link">
+        <a href="/api/pagina-inicial" class="logo-link">
           <img src="/images/branco.png" alt="Coletai" class="logo-imagem">
         </a>
         <div class="mdl-layout-spacer"></div>
@@ -37,10 +37,10 @@
               <input class="mdl-textfield__input" type="text" id="search-field">
             </div>
           </div>
-          <a href="pontos-de-coleta" class="mdl-navigation__link mdl-typography--text-uppercase">Pontos de
+          <a href="/api/pontos-de-coleta" class="mdl-navigation__link mdl-typography--text-uppercase">Pontos de
             Coleta</a>
-          <a href="cadastrar-usuario" class="mdl-navigation__link mdl-typography--text-uppercase">Cadastrar-se</a>
-          <a href="login" class="mdl-navigation__link mdl-typography--text-uppercase">Entrar</a>
+          <a href="/api/cadastrar-usuario" class="mdl-navigation__link mdl-typography--text-uppercase">Cadastrar-se</a>
+          <a href="/api/login" class="mdl-navigation__link mdl-typography--text-uppercase">Entrar</a>
         </nav>
       </div>
     </div> <!--mdl-layout__header-->
@@ -49,55 +49,43 @@
 
       <div class="mdl-typography--text-center">
         <div class="coletai-slogan">slogan do site </br>
-          descrver objetivo</div>
+          descrever objetivo</div>
       </div>
 
-      <div class="coletai-cards">
-        <div class="font-titulo-secao">Fique por dentro dos últimos pontos de coleta cadastrados:</div>
-        <div class="coletai-card-container mdl-grid">
-
-          <div class="mdl-cell mdl-cell--4-col mdl-card mdl-shadow--3dp">
-            <div class="mdl-card__media">
-              <img src="/images/fundo-imagem.png">
-            </div>
-            <div class="mdl-card__title">
-              <h4 class="mdl-card__title-text font-color-destaque">Ponto de Coleta 1</h4>
-            </div>
-            <div class="mdl-card__supporting-text">
-              <span class="mdl-typography--font-light mdl-typography--subhead">Lorem ipsum dolor sit amet. Ex tempora
-                voluptatem aut molestias vitae sed nobis omnis sed quia rerum
-                et cumque velit sit asperiores recusandae eos exercitationem enim!</span>
-            </div>
-            <div class="mdl-card__actions">
-              <a class="mdl-button mdl-js-button card-link mdl-typography--font-light" href="/visualizar-ponto">
-                Mais informações
-                <i class="material-icons">chevron_right</i>
-              </a>
-            </div>
+      <div class="coletai-cards-todos">
+        <div class="coletai-card-container mdl-grid" id="div-pai">
+          <div class="mdl-cell mdl-cell--12-col">
+            <h6 class="font-titulo-secao">Fique por dentro dos últimos Pontos de Coleta cadastrados:
+            </h6>
           </div>
-
         </div> <!--coletai-card-container-->
-
-        <a href="/todos-pontos" class="card-link link">
-          <div class="font-titulo-secao">Visualizar todos</div>
-        </a>
 
       </div> <!--coletai-cards-->
 
-      <footer class="mdl-mini-footer">
-        <div class="mdl-mini-footer__left-section">
-          <div class="mdl-logo mdl-typography--text-uppercase">Coletaí</div>
-        </div>
-        <div class="mdl-mini-footer__right-section">
-          <ul class="mdl-mini-footer__link-list">
-            <li><a href="sobre">Sobre o Coletaí</a></li>
-          </ul>
-        </div>
-      </footer>
+      <div class="mdl-cell mdl-cell--12-col div-link">
+        <a href="/api/pontos-de-coleta-auth" class="card-link link">
+          <div class="font-titulo-secao">Visualizar todos</div>
+        </a>
+      </div>
 
-    </div> <!--mdl-layout__content-->
+    </div> <!--coletai-cards-->
+
+    <footer class="mdl-mini-footer">
+      <div class="mdl-mini-footer__left-section">
+        <div class="mdl-logo mdl-typography--text-uppercase">Coletaí</div>
+      </div>
+      <div class="mdl-mini-footer__right-section">
+        <ul class="mdl-mini-footer__link-list">
+          <li><a href="/api/sobre">Sobre o Coletaí</a></li>
+        </ul>
+      </div>
+    </footer>
+
+  </div> <!--mdl-layout__content-->
 
   </div> <!--mdl-layout-->
+
+  <script src="/js/index.js"></script>
 
 </body>
 
