@@ -1,7 +1,7 @@
 var script_pagina = function () {
 
     const token = localStorage.getItem('token');
-    
+
     document.getElementById('btn-sair').addEventListener('click', () => {
         localStorage.removeItem('token');
         window.location.href = '/api/pagina-inicial';
@@ -33,11 +33,11 @@ var script_pagina = function () {
                     <span class="mdl-typography--font-light mdl-typography--subhead">${obj.descricao}</span>
                 </div>
                 <div class="mdl-card__actions">
-                    <a class="mdl-button mdl-js-button card-link mdl-typography--font-light"
-                        href="/api/detalhes-ponto-de-coleta/${obj.id}" id="btn-visualizar-ponto">
-                        Visualizar
-                        <i class="material-icons">chevron_right</i>
-                    </a>
+                <a class="mdl-button mdl-js-button card-link mdl-typography--font-light"
+                href="/api/detalhes-ponto-de-coleta-auth/${obj.id}">
+                    Visualizar
+                    <i class="material-icons">chevron_right</i>
+                </a>
                     <a class="mdl-button mdl-js-button card-link mdl-typography--font-light"
                         href="/api/ponto-de-coleta/${obj.id}">
                         Editar
@@ -49,6 +49,17 @@ var script_pagina = function () {
                 document.getElementById('div-pai').appendChild(novaDiv); // adiciona a nova div ao elemento pai
             });
         });
+
+    //campo de pesquisa
+    const searchField = document.getElementById('search-field');
+    searchField.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            const searchText = event.target.value;
+            if (searchText.trim().length != 0) {
+                window.location.href = '/api/resultado-pesquisa-auth/' + searchText;
+            }
+        };
+    });
 
 } //fecha function
 

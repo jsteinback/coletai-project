@@ -11,6 +11,23 @@
     font-weight: 500;
 }
 
+.coletai-header {
+    position: relative;
+    height: 200px;
+    width: auto;
+    background: url('/images/header-img.png') center 30% no-repeat;
+    background-size: cover;
+}
+
+.coletai-header-text {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-weight: 100;
+    font-size: 26px;
+    margin: 0 16px;
+    padding-top: 50px;
+    color: aliceblue;
+}
+
 .logo-link {
     display: inline-block;
 }
@@ -21,6 +38,10 @@
 
 .mdl-layout {
     background-color: aliceblue;
+}
+
+.add-comentario {
+    width: 100%;
 }
 
 .font-color {
@@ -41,17 +62,10 @@
 
 .font-nome-ponto {
     font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-    color: rgb(0, 150, 136);
+    color: #009688;
     font-weight: bold;
     font-size: large;
     margin-right: 20px;
-}
-
-.coletai-slogan {
-    font-size: 26px;
-    margin: 0 16px;
-    padding-top: 50px;
-    color: dimgray;
 }
 
 .coletai-cards {
@@ -104,6 +118,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white !important;
+}
+
+.coletai-botao-comentario {
     color: white !important;
 }
 
@@ -161,8 +179,12 @@
     color: rgb(158, 158, 158);
 }
 
+.classificado {
+    color: #FDD835;
+}
+
 .favoritado {
-    color: #F3DE22;
+    color: #f44235;
 }
 
 .icon-classificacao {
@@ -236,5 +258,55 @@
 }
 
 .title-disabled {
-    color: rgb(0, 150, 136) !important;
+    color: #009688 !important;
 }
+
+.mdl-mini-footer {
+    height: 15px;
+}
+
+.mdl-card__media img {
+    width: 400px;
+}
+
+.titulo-comentario {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-size: medium;
+    color: dimgray;
+    margin-left: 10px;
+}
+
+.texto-comentario {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-size: 15px;
+    color: dimgray
+}
+
+.comentarios {
+    background-color: white;
+}
+
+.comentarios-sub {
+    padding-top: 5px;
+    padding-bottom: 2px;
+}
+
+.comentarios-action {
+    text-align: right;
+}
+
+.card-comentario {
+    width: 80%;
+    min-height: 100px !important;
+}
+
+.div-comentarios {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mdl-card__actions {
+    display: flex;
+    justify-content: flex-end;
+  }

@@ -1,5 +1,6 @@
 var script_pagina = function () {
     const botoesEstrela = document.querySelectorAll('.icon-classificacao');
+    const botaoFavorito = document.querySelector('.icon-favorito');
     const token = localStorage.getItem('token');
 
     document.getElementById('btn-sair').addEventListener('click', () => {
@@ -9,7 +10,7 @@ var script_pagina = function () {
 
     //Busca os dados do ponto de coleta
     var idPonto = window.location.pathname.match(/\/(\d+)$/)[1];
-    const url = '/api/view/ponto-de-coleta/' + idPonto;
+    const url = '/api/view/ponto-de-coleta-auth/' + idPonto;
     const options = {
         method: 'GET',
         headers: {
@@ -47,17 +48,69 @@ var script_pagina = function () {
             botoesEstrela.forEach((botao, index) => {
                 if (index < data.classificacao) {
                     botao.classList.remove('icon-desabilitado');
-                    botao.classList.add('favoritado');
+                    botao.classList.add('classificado');
                 } else {
-                    botao.classList.remove('favoritado');
+                    botao.classList.remove('classificado');
                     botao.classList.add('icon-desabilitado');
                 }
             })
+
+            //atualiza cor do favorito
+            if (data.favorito === true) {
+                botaoFavorito.classList.remove('icon-desabilitado')
+                botaoFavorito.classList.add('favoritado')
+            } else if (data.favorito === false) {
+                botaoFavorito.classList.remove('favoritado')
+                botaoFavorito.classList.add('icon-desabilitado')
+            }
+
+            //cria os comentários
+            data.comentarios.forEach(obj => { // loop sobre os dados retornados da requisição
+                let data = new Date(obj.dt_comentario);
+                let dataFormatada = data.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+                
+                //cria a div que recebe os comentarios
+                const divComentario = document.createElement('div');
+                divComentario.classList.add('mdl-cell', 'mdl-cell-12--col', 'mdl-card', 'mdl-shadow--2dp', 'card-comentario');
+                divComentario.innerHTML = `
+                    <div class="mdl-card__title comentarios-sub" id="nome-ponto">
+                        <h4 class="mdl-card__title-text titulo-comentario" id="usuario-comentario"
+                            style="font-weight: bold;">${obj.nome}</h4>
+                        <h4 class="mdl-card__title-text titulo-comentario" id="data-comentario">${dataFormatada}</h4>
+                    </div>
+                    <div class="mdl-card__supporting-text comentarios-sub">
+                        <span class="mdl-typography--font-light mdl-typography--subhead texto-comentario"
+                            id="texto-comentario">${obj.comentario}</span>
+                    </div>
+                    <div class="mdl-card__menu">
+                        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Responder">
+                            <i class="material-icons">reply</i>
+                        </button>
+                    </div>
+            `;
+                //adiciona a nova div na div-pai
+                document.getElementById('div-pai').appendChild(divComentario);
+            })
+
+
+
         })
 
+    //Botão google maps
+    document.getElementById('btn-localizacao').addEventListener('click', () => {
+        const endereco = document.getElementById('endereco').value;
+        const cidade = document.getElementById('cidade').value;
+        const estado = document.getElementById('estado').value;
+        const cep = document.getElementById('cep').value;
+        const enderecoCompleto = `${endereco}, ${cidade}, ${estado}, ${cep}`;
+        const urlLocal = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(enderecoCompleto)}`;
+        //console.log(urlLocal);
+        window.open(urlLocal, '_blank');
+    });
+
     //Botão favoritar
-    /*
     document.getElementById('btn-favoritar').addEventListener('click', () => {
+
         const url = '/api/fav/ponto-de-coleta/' + idPonto;
         const options = {
             method: 'POST',
@@ -65,22 +118,28 @@ var script_pagina = function () {
                 'Content-Type': 'application/json',
                 'authorization': token
             }
-        };
+        }
 
-        fetch(url, options)
-                .then(response => {
-                    if (response.status === 200) {
-                        const iconElement = document.querySelector('#btn-favoritar i');
-                        iconElement.classList.toggle('favoritado');
-                      }
-                      return response.json();
-                })
-                .then(data => {
-                    console.log(data);
-                })
-                .catch(error => console.error(error));
+        requisicao(url, options)
+            .then(data => {
+                //show snackbar
+                const snackbarContainer = document.querySelector('#snackbar-container-success')
+                const snackbarData = {
+                    message: data.message,
+                    timeout: 2750
+                }
+                snackbarContainer.MaterialSnackbar.showSnackbar(snackbarData);
+
+                //atualiza cor do ícone
+                if (data.favNovo === true) {
+                    botaoFavorito.classList.remove('icon-desabilitado')
+                    botaoFavorito.classList.add('favoritado')
+                } else if (data.favNovo === false) {
+                    botaoFavorito.classList.remove('favoritado')
+                    botaoFavorito.classList.add('icon-desabilitado')
+                }
+            })
     });
-    */
 
     //Classificação
     botoesEstrela.forEach(botao => {
@@ -119,9 +178,9 @@ var script_pagina = function () {
                     botoesEstrela.forEach((botao, index) => {
                         if (index < classificacao) {
                             botao.classList.remove('icon-desabilitado');
-                            botao.classList.add('favoritado');
+                            botao.classList.add('classificado');
                         } else {
-                            botao.classList.remove('favoritado');
+                            botao.classList.remove('classificado');
                             botao.classList.add('icon-desabilitado');
                         }
                     })
@@ -129,6 +188,47 @@ var script_pagina = function () {
                 .catch(error => console.error(error));
         });
     });
+
+    //campo de pesquisa
+    const searchField = document.getElementById('search-field');
+    searchField.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            const searchText = event.target.value;
+            if (searchText.trim().length != 0) {
+                window.location.href = '/api/resultado-pesquisa-auth/' + searchText;
+            }
+        };
+    });
+
+    //adicionar comentário
+    document.getElementById('bt-comentar').addEventListener('click', () => {
+        event.preventDefault();
+        const comentario = document.getElementById('input-comentario').value;
+        if (comentario.trim().length != 0) {
+
+            // Salvar comentário
+            const url = '/api/add/comentario/' + idPonto;
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': token
+                },
+                body: JSON.stringify(
+                    {
+                        comentario: comentario
+                    })
+            };
+
+            requisicao(url, options)
+                .then(data => {
+                    console.log(data);
+                    window.location.reload();
+                })
+        }
+
+    });
+
 
 } //fecha function
 

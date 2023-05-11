@@ -39,8 +39,12 @@ const getEditPonto = (req, res) => {
     res.render('edita-ponto.html');
 };
 
-const getViewPonto = (req, res) => {
+const getViewPontoAuth = (req, res) => {
     res.render('visualizar-ponto-autenticado.html');
+};
+
+const getViewPonto = (req, res) => {
+    res.render('visualizar-ponto.html');
 };
 
 const getMeusPontos = (req, res) => {
@@ -49,6 +53,18 @@ const getMeusPontos = (req, res) => {
 
 const getSobre = (req, res) => {
     res.render('sobre-coletai.html');
+};
+
+const getSobreAuth = (req, res) => {
+    res.render('sobre-coletai-autenticado.html');
+};
+
+const getPesquisa = (req, res) => {
+    res.render('resultado-pesquisa.html');
+};
+
+const getPesquisaAuth = (req, res) => {
+    res.render('resultado-pesquisa-autenticado.html');
 };
 
 const addUsuario = async (req, res) => {
@@ -96,7 +112,7 @@ const addUsuario = async (req, res) => {
             }
         });
 
-        res.status(200).json({ message: 'Usuário cadastrado com sucesso!', redirectUrl: '/api/login/' });
+        res.status(200).json({ message: 'Usuário cadastrado com sucesso!', redirectUrl: '/api/login' });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Erro ao consultar o banco de dados' });
@@ -169,7 +185,7 @@ const addPonto = async (req, res) => {
             if (error) throw error;
 
             const idPonto = results.rows[0].id;
-            const url = '/api/detalhes-ponto-de-coleta/' + idPonto
+            const url = '/api/detalhes-ponto-de-coleta-auth/' + idPonto
             res.status(200).json({ message: 'Ponto de Coleta cadastrado com sucesso!', redirectUrl: url });
         });
     } catch (error) {
@@ -281,8 +297,10 @@ const deletePonto = async (req, res) => {
     });
 }
 
-const getDetalhesPonto = async (req, res) => {
+const getDetalhesPontoAuth = async (req, res) => {
     const id = parseInt(req.params.id);
+    let favorito = false;
+    let comentarios;
 
     // validar usuário conectado
     const token = req.headers["authorization"];
@@ -293,12 +311,48 @@ const getDetalhesPonto = async (req, res) => {
         // busca os dados do ponto de coleta
         const results = await pool.query(queries.getPontoById, [id]);
 
+        //busca os comentarios
+        const getComentarios = await pool.query(queries.getComentario, [id]);
+        if (getComentarios.rows[0]) {
+            comentarios = getComentarios.rows;
+        }
+
+        // verifica se é favorito
+        const checkFavorito = await pool.query(queries.checkFavorito, [idUsuario, id]);
+        if (checkFavorito.rows[0]) {
+            favorito = checkFavorito.rows[0].favorito;
+        }
+
         // busca a classificação
-        const checkClassificacao = await pool.query(queries.checkClassificacao, [idUsuario,id]);
+        const checkClassificacao = await pool.query(queries.checkClassificacaoGeral, [id]);
 
         if (checkClassificacao.rows[0]) {
             // tem classificação, manda no results
-            const classificacao = checkClassificacao.rows[0].avaliacao;
+            const classificacao = checkClassificacao.rows[0].classificacao;
+            return res.status(200).json({ ...results.rows[0], comentarios, favorito, classificacao });
+        } else {
+            // não tem classificação
+            return res.status(200).json({ ...results.rows[0], comentarios, favorito });
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Erro ao consultar o banco de dados" });
+    }
+};
+
+const getDetalhesPonto = async (req, res) => {
+    const id = parseInt(req.params.id);
+
+    try {
+        // busca os dados do ponto de coleta
+        const results = await pool.query(queries.getPontoById, [id]);
+
+        // busca a classificação
+        const checkClassificacao = await pool.query(queries.checkClassificacaoGeral, [id]);
+
+        if (checkClassificacao.rows[0]) {
+            // tem classificação, manda no results
+            const classificacao = checkClassificacao.rows[0].classificacao;
             return res.status(200).json({ ...results.rows[0], classificacao });
         } else {
             // não tem classificação
@@ -309,28 +363,6 @@ const getDetalhesPonto = async (req, res) => {
         return res.status(500).json({ message: "Erro ao consultar o banco de dados" });
     }
 };
-
-
-const favPonto = async (req, res) => {
-    //validar usuário conectado
-    const token = req.headers['authorization'];
-    const decodedToken = jwt.verify(token, process.env.SECRET);
-    const idUsuario = decodedToken.id;
-
-    const idPonto = parseInt(req.params.id);
-
-    try {
-        const favorito = 1;
-        const dt_habilitado = new Date();
-        pool.query(queries.favPonto, [idUsuario, idPonto, favorito, dt_habilitado], (error, results) => {
-            return res.status(200).json({ message: 'Ponto de Coleta favoritado' });
-        })
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: 'Erro ao consultar o banco de dados' });
-    }
-
-}
 
 const ratePonto = async (req, res) => {
     const { classificacao } = req.body;
@@ -361,6 +393,85 @@ const ratePonto = async (req, res) => {
     }
 }
 
+const getResultadoPesquisa = async (req, res) => {
+    const busca = req.params.busca;
+    try {
+        const { rows } = await pool.query(queries.getResultadoPesquisa, [busca]);
+        return res.status(200).json(rows);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Erro ao executar a consulta.' });
+    }
+};
+
+const getResultadoPesquisaAuth = async (req, res) => {
+    const busca = req.params.busca;
+    try {
+        const { rows } = await pool.query(queries.getResultadoPesquisa, [busca]);
+        return res.status(200).json(rows);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Erro ao executar a consulta.' });
+    }
+};
+
+const favPonto = async (req, res) => {
+    const idUsuario = req.idUsuario;
+    const idPonto = parseInt(req.params.id);
+    let favAtual;
+    let favNovo;
+    let data;
+
+    try {
+        const { rows } = await pool.query(queries.checkFavorito, [idUsuario, idPonto]);
+        if (rows[0]) {
+            favAtual = rows[0].favorito;
+            if (favAtual === false) {
+                //está desabilitado, precisa habilitar
+                favNovo = true;
+                data = new Date();
+                pool.query(queries.reUpdateFavorito, [idUsuario, idPonto, favNovo, data], (error, results) => {
+                    return res.status(200).json({ message: 'Favorito habilitado!', favNovo });
+                })
+            } else if (favAtual === true) {
+                //está habilitado, precisa desabilitar
+                favNovo = false;
+                data = new Date();
+                pool.query(queries.updateFavorito, [idUsuario, idPonto, favNovo, data], (error, results) => {
+                    return res.status(200).json({ message: 'Favorito desabilitado!', favNovo });
+                })
+            }
+        } else {
+            //não é favorito, insere
+            favNovo = true;
+            data = new Date();
+            pool.query(queries.insertFavorito, [idUsuario, idPonto, favNovo, data], (error, results) => {
+                return res.status(200).json({ message: 'Favorito inserido!', favNovo });
+            })
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Erro ao executar a consulta.' });
+    }
+};
+
+const addComentario = async (req, res) => {
+    const { comentario } = req.body;
+    const idUsuario = req.idUsuario;
+    const idPonto = parseInt(req.params.id);
+
+    try {
+        const data = new Date();
+        pool.query(queries.insertComentario, [idUsuario, idPonto, comentario, data], (error, results) => {
+            return res.status(200).json({ message: 'adicionado' });
+        })
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Erro ao executar a consulta.' });
+    }
+
+};
+
 module.exports = {
     paginaInicial,
     getHome,
@@ -371,9 +482,11 @@ module.exports = {
     getTodosPontosAuth,
     getAddPonto,
     getEditPonto,
+    getViewPontoAuth,
     getViewPonto,
     getMeusPontos,
     getSobre,
+    getSobreAuth,
     addUsuario,
     addPonto,
     login,
@@ -385,7 +498,13 @@ module.exports = {
     editPonto,
     deletePonto,
     pontosPreview,
+    getDetalhesPontoAuth,
     getDetalhesPonto,
+    ratePonto,
+    getPesquisa,
+    getResultadoPesquisa,
+    getPesquisaAuth,
+    getResultadoPesquisaAuth,
     favPonto,
-    ratePonto
+    addComentario
 };

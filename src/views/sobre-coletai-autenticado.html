@@ -24,7 +24,7 @@
 
         <div class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <a href="/api/pagina-inicial" class="logo-link">
+                <a href="/api/home" class="logo-link" id="logo-link">
                     <img src="/images/branco.png" alt="Coletai" class="logo-imagem">
                 </a>
                 <div class="mdl-layout-spacer"></div>
@@ -38,12 +38,14 @@
                             <input class="mdl-textfield__input" type="text" id="search-field">
                         </div>
                     </div>
-                    <a href="/api/pontos-de-coleta" class="mdl-navigation__link mdl-typography--text-uppercase">Pontos
-                        de
-                        Coleta</a>
-                    <a href="/api/cadastrar-usuario"
-                        class="mdl-navigation__link mdl-typography--text-uppercase">Cadastrar-se</a>
-                    <a href="/api/login" class="mdl-navigation__link mdl-typography--text-uppercase">Entrar</a>
+                    <a href="/api/pontos-de-coleta-auth"
+                        class="mdl-navigation__link mdl-typography--text-uppercase">Pontos de Coleta</a>
+                    <a href="/api/meus-pontos-de-coleta"
+                        class="mdl-navigation__link mdl-typography--text-uppercase">Meus Pontos de Coleta</a>
+                    <a href="/api/meu-perfil" class="mdl-navigation__link mdl-typography--text-uppercase"
+                        id="btn-perfil">Meu Perfil</a>
+                    <a href="/api/pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase"
+                        id="btn-sair">Sair</a>
                 </nav>
             </div>
         </div> <!--mdl-layout__header-->

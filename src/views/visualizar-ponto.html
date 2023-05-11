@@ -24,7 +24,7 @@
 
         <div class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <a href="/api/home" class="logo-link">
+                <a href="/api/pagina-inicial" class="logo-link">
                     <img src="/images/branco.png" alt="Coletai" class="logo-imagem">
                 </a>
                 <div class="mdl-layout-spacer"></div>
@@ -38,54 +38,39 @@
                             <input class="mdl-textfield__input" type="text" id="search-field">
                         </div>
                     </div>
-                    <a href="/api/pontos-de-coleta-auth"
-                        class="mdl-navigation__link mdl-typography--text-uppercase">Pontos de Coleta</a>
-                    <a href="/api/meus-pontos-de-coleta"
-                        class="mdl-navigation__link mdl-typography--text-uppercase">Meus Pontos de Coleta</a>
-                    <a href="/api/meu-perfil" class="mdl-navigation__link mdl-typography--text-uppercase"
-                        id="btn-perfil">Meu Perfil</a>
-                    <a href="/api/pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase"
-                        id="btn-sair">Sair</a>
+                    <a href="/api/pontos-de-coleta" class="mdl-navigation__link mdl-typography--text-uppercase">Pontos
+                        de
+                        Coleta</a>
+                    <a href="/api/cadastrar-usuario"
+                        class="mdl-navigation__link mdl-typography--text-uppercase">Cadastrar-se</a>
+                    <a href="/api/login" class="mdl-navigation__link mdl-typography--text-uppercase">Entrar</a>
                 </nav>
             </div>
         </div> <!--mdl-layout__header-->
 
         <div class="mdl-layout__content">
 
-            <div class="mdl-grid informacoes-ponto">
+            <div class="mdl-grid">
                 <!--Título e Botão de Favorito-->
                 <div class="mdl-cell mdl-cell--1-col"></div>
                 <div class="mdl-cell mdl-cell--10-col titulo-ponto">
                     <h5 class="font-nome-ponto mdl-typography--text-uppercase" id="nome"></h5>
-                    <button class="mdl-button mdl-js-button mdl-button--icon" id="btn-favoritar">
-                        <i class="material-icons icon-desabilitado icon-favorito">favorite</i>
-                    </button>
                 </div>
                 <div class="mdl-cell mdl-cell--1-col"></div>
 
 
                 <!--Imagem e Classificação e Compartilhamento-->
                 <div class="mdl-cell mdl-cell--1-col"></div>
-                <div class="mdl-cell mdl-cell--5-col imagem-detalhes">
+                <div class="mdl-cell mdl-cell--7-col imagem-detalhes">
                     <img src="/images/loja-de-convenincia-.jpg" alt="Imagem" class="imagem">
                 </div>
-                <div class="mdl-cell mdl-cell--3-col">
+                <div class="mdl-cell mdl-cell--4-col">
                     <div class="classificacao">
-                        <button class="mdl-button mdl-js-button mdl-button--icon">
-                            <i class="material-icons icon-desabilitado icon-classificacao">star</i>
-                        </button>
-                        <button class="mdl-button mdl-js-button mdl-button--icon">
-                            <i class="material-icons icon-desabilitado icon-classificacao">star</i>
-                        </button>
-                        <button class="mdl-button mdl-js-button mdl-button--icon">
-                            <i class="material-icons icon-desabilitado icon-classificacao">star</i>
-                        </button>
-                        <button class="mdl-button mdl-js-button mdl-button--icon">
-                            <i class="material-icons icon-desabilitado icon-classificacao">star</i>
-                        </button>
-                        <button class="mdl-button mdl-js-button mdl-button--icon">
-                            <i class="material-icons icon-desabilitado icon-classificacao">star</i>
-                        </button>
+                        <i class="material-icons icon-desabilitado icon-classificacao">star</i>
+                        <i class="material-icons icon-desabilitado icon-classificacao">star</i>
+                        <i class="material-icons icon-desabilitado icon-classificacao">star</i>
+                        <i class="material-icons icon-desabilitado icon-classificacao">star</i>
+                        <i class="material-icons icon-desabilitado icon-classificacao">star</i>
                     </div>
                     </br>
                     <div class="botao-share">
@@ -96,7 +81,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="mdl-cell mdl-cell--3-col"></div>
+                <div class="mdl-cell mdl-cell--1-col"></div>
 
 
                 <form class="mdl-grid">
@@ -159,44 +144,7 @@
 
                 </form>
 
-                <div id="snackbar-container" class="mdl-js-snackbar mdl-snackbar snackbar-erro">
-                    <div class="mdl-snackbar__text"></div>
-                    <button class="mdl-snackbar__action" type="button"></button>
-                </div>
-                <div id="snackbar-container-success" class="mdl-js-snackbar mdl-snackbar snackbar-sucesso">
-                    <div class="mdl-snackbar__text"></div>
-                    <button class="mdl-snackbar__action" type="button"></button>
-                </div>
             </div> <!--mdl-grid-->
-
-            <!--Comentários-->
-            <div class="coletai-comentarios comentarios">
-                <form class="mdl-grid comentarios">
-                    <div class="mdl-cell mdl-cell--1-col"></div>
-                    <div class="mdl-cell mdl-cell--10-col" style="height: 30px;">
-                        <h5 class="font-titulo-secao mdl-typography--text-uppercase">Comentários</h5>
-                    </div>
-                    <div class="mdl-cell mdl-cell--1-col"></div>
-                    <div class="mdl-cell mdl-cell--1-col"></div>
-                    <div
-                        class="mdl-cell mdl-cell--9-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--align-top">
-                        <textarea class="mdl-textfield__input text-disabled" type="text" rows="1"
-                            id="input-comentario"></textarea>
-                        <label class="mdl-textfield__label title-disabled" for="comentario">Adicionar
-                            comentário...</label>
-                    </div>
-                    <div class="mdl-cell mdl-cell--1-col">
-                        <button id="bt-comentar" type="submit"
-                            class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored coletai-botao-comentario">
-                            <i class="material-icons">add</i>
-                        </button>
-                    </div>
-                    <div class="mdl-cell mdl-cell--1-col"></div>
-                </form>
-                <div class="mdl-grid div-comentarios" id="div-pai">
-                </div> <!--coletai-card-container-->
-
-            </div> <!--coletai-cards comentarios-->
 
             <footer class="mdl-mini-footer">
                 <div class="mdl-mini-footer__left-section">
@@ -213,8 +161,7 @@
 
     </div> <!--mdl-layout__content-->
 
-    <script src="/js/requisicao.js"></script>
-    <script src="/js/visualizar-ponto-autenticado.js"></script>
+    <script src="/js/visualizar-ponto.js"></script>
 
 </body>
 

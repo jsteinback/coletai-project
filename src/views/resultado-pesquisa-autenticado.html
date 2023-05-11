@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COLETAÍ - Sobre</title>
+    <title>COLETAÍ - Pontos de Coleta</title>
 
     <!--ESTILOS-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -19,12 +19,11 @@
 </head>
 
 <body>
-
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
         <div class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <a href="/api/pagina-inicial" class="logo-link">
+                <a href="/api/home" class="logo-link">
                     <img src="/images/branco.png" alt="Coletai" class="logo-imagem">
                 </a>
                 <div class="mdl-layout-spacer"></div>
@@ -38,49 +37,48 @@
                             <input class="mdl-textfield__input" type="text" id="search-field">
                         </div>
                     </div>
-                    <a href="/api/pontos-de-coleta" class="mdl-navigation__link mdl-typography--text-uppercase">Pontos
-                        de
-                        Coleta</a>
-                    <a href="/api/cadastrar-usuario"
-                        class="mdl-navigation__link mdl-typography--text-uppercase">Cadastrar-se</a>
-                    <a href="/api/login" class="mdl-navigation__link mdl-typography--text-uppercase">Entrar</a>
+                    <a href="/api/pontos-de-coleta-auth"
+                        class="mdl-navigation__link mdl-typography--text-uppercase">Pontos de Coleta</a>
+                    <a href="/api/meus-pontos-de-coleta"
+                        class="mdl-navigation__link mdl-typography--text-uppercase">Meus Pontos de Coleta</a>
+                    <a href="/api/meu-perfil" class="mdl-navigation__link mdl-typography--text-uppercase"
+                        id="btn-perfil">Meu Perfil</a>
+                    <a href="/api/pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase"
+                        id="btn-sair">Sair</a>
                 </nav>
             </div>
         </div> <!--mdl-layout__header-->
 
-        <main class="mdl-layout__content">
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--2-col"></div>
-                <div class="mdl-cell mdl-cell--8-col mdl-card mdl-shadow--2dp">
-                    <div class="mdl-card__title">
-                        <div class="mdl-card__title-text">
-                            <h6 class="font-titulo-secao">Sobre o Coletaí
-                            </h6>
-                        </div>
+        <div class="mdl-layout__content">
+
+            <div class="coletai-cards-todos">
+                <div class="coletai-card-container mdl-grid" id="div-pai">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <h6 class="font-titulo-secao">Pontos de Coleta relacionados à sua busca:
+                        </h6>
                     </div>
-                    <div class="mdl-card__supporting-text">
-                        <p>
-                            O Coletaí tem por objetivo principal auxiliar na divulgação de Pontos de Coleta de doações.
-                        </p>
-                    </div>
+
+
+                </div> <!--coletai-card-container-->
+
+            </div> <!--coletai-cards-->
+
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo mdl-typography--text-uppercase">Coletaí</div>
                 </div>
-                <div class="mdl-cell mdl-cell--2-col"></div>
-            </div>
-        </main>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="sobre">Sobre o Coletaí</a></li>
+                    </ul>
+                </div>
+            </footer>
 
-        <!--RODAPÉ-->
-        <footer class="mdl-mini-footer">
-            <div class="mdl-mini-footer__left-section">
-                <div class="mdl-logo mdl-typography--text-uppercase">Coletaí</div>
-            </div>
-            <div class="mdl-mini-footer__right-section">
-                <ul class="mdl-mini-footer__link-list">
-                    <li><a href="sobre">Sobre o Coletaí</a></li>
-                </ul>
-            </div>
-        </footer>
+        </div> <!--mdl-layout__content-->
 
-    </div>
+    </div> <!--mdl-layout__content-->
+
+    <script src="/js/resultado-pesquisa-autenticado.js"></script>
 
 </body>
 

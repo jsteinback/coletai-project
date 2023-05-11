@@ -1,7 +1,12 @@
 var script_pagina = function () {
 
-    //Busca os dados dos pontos de coleta
-    const url = 'all/pagina-inicial';
+    //Busca os dados dos pontos de coleta de acordo com pesquisa
+    const urlOrigin = window.location.href;
+    const parts = urlOrigin.split('/');
+    const lastPart = parts[parts.length - 1];
+    const searchText = decodeURIComponent(lastPart);
+
+    const url = '/api/get/resultado-pesquisa/' + searchText;
     const options = {
         method: 'GET',
         headers: {
@@ -38,6 +43,7 @@ var script_pagina = function () {
 
                 document.getElementById('div-pai').appendChild(novaDiv); // adiciona a nova div ao elemento pai
             })
+
         })
         .catch(error => console.error(error));
 

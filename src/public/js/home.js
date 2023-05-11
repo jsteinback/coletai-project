@@ -26,9 +26,6 @@ var script_pagina = function () {
         const novaDiv = document.createElement('div'); // cria um novo elemento div
         novaDiv.classList.add('mdl-cell', 'mdl-cell--3-col', 'mdl-card', 'mdl-shadow--3dp'); // define suas classes
         novaDiv.innerHTML = `
-            <div class="mdl-card__media">
-                <img src="/images/fundo-imagem.png">
-            </div>
             <div class="mdl-card__title" id="nome-ponto">
                 <h4 class="mdl-card__title-text font-color-destaque">${obj.nome}</h4>
             </div>
@@ -37,7 +34,7 @@ var script_pagina = function () {
             </div>
             <div class="mdl-card__actions">
                 <a class="mdl-button mdl-js-button card-link mdl-typography--font-light"
-                    href="/api/detalhes-ponto-de-coleta">
+                href="/api/detalhes-ponto-de-coleta-auth/${obj.id}">
                     Visualizar
                     <i class="material-icons">chevron_right</i>
                 </a>
@@ -48,6 +45,17 @@ var script_pagina = function () {
       })
     })
     .catch(error => console.error(error));
+
+  //campo de pesquisa
+  const searchField = document.getElementById('search-field');
+  searchField.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      const searchText = event.target.value;
+      if (searchText.trim().length != 0) {
+        window.location.href = '/api/resultado-pesquisa-auth/' + searchText;
+      }
+    };
+  });
 
 }
 script_pagina();

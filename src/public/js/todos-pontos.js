@@ -30,7 +30,7 @@ var script_pagina = function () {
                 </div>
                 <div class="mdl-card__actions">
                     <a class="mdl-button mdl-js-button card-link mdl-typography--font-light"
-                        href="/api/detalhes-ponto-de-coleta">
+                    href="/api/detalhes-ponto-de-coleta/${obj.id}">
                         Visualizar
                         <i class="material-icons">chevron_right</i>
                     </a>
@@ -41,6 +41,17 @@ var script_pagina = function () {
             })
         })
         .catch(error => console.error(error));
+
+    //campo de pesquisa
+    const searchField = document.getElementById('search-field');
+    searchField.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            const searchText = event.target.value;
+            if (searchText.trim().length != 0) {
+                window.location.href = '/api/resultado-pesquisa/' + searchText;
+            }
+        };
+    });
 
 } //fecha function
 
