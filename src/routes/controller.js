@@ -463,7 +463,7 @@ const addComentario = async (req, res) => {
     try {
         const data = new Date();
         pool.query(queries.insertComentario, [idUsuario, idPonto, comentario, data], (error, results) => {
-            return res.status(200).json({ message: 'adicionado' });
+            return res.status(200).json({ message: 'Comentario adicionado' });
         })
     } catch (error) {
         console.error(error);
