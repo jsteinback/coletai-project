@@ -14,9 +14,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 
-app.get('/api/', (req, res) => {
-    res.render('index.html');
-});
+app.get('/pagina-inicial', (req, res) => { res.render('index.html'); });
 
 app.listen(port, () => {
     console.log(`app listening on port ${port}`)
@@ -32,7 +30,7 @@ app.use(cookieParser());
 app.use(morgan('dev'))
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api', coletaiRoutes);
+app.use('/', coletaiRoutes); //api
 
 app.use(function (req, res, next) {
     next(createError(404));
