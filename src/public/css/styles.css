@@ -11,6 +11,15 @@
     font-weight: 500;
 }
 
+.imagem-login {
+    background: url('/src/public/images/colorido.png');
+    padding: 0;
+    height: 100px !important;
+    width: auto !important;
+    box-sizing: border-box;
+    background-size: cover;
+}
+
 .coletai-header {
     position: relative;
     height: 200px;
@@ -19,13 +28,26 @@
     background-size: cover;
 }
 
+.coletai-header-text-title {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-size: 18px;
+    margin: 0 16px;
+    color: aliceblue;
+    text-align: left;
+    font-weight: bold;
+    padding-top: 60px;
+}
+
 .coletai-header-text {
     font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
     font-weight: 100;
-    font-size: 26px;
-    margin: 0 16px;
-    padding-top: 50px;
+    font-size: 18px;
+    margin-left: 16px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
     color: aliceblue;
+    text-align: left;
 }
 
 .logo-link {
@@ -309,4 +331,4 @@
 .mdl-card__actions {
     display: flex;
     justify-content: flex-end;
-  }
+}
