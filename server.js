@@ -15,7 +15,7 @@ const port = process.env.PORT || 3000;
 
 
 app.get('/', (req, res) => {
-    res.send('Coletai')
+    res.render('index.html');
 });
 
 app.listen(port, () => {
