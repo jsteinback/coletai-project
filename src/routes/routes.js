@@ -20,6 +20,7 @@ router.get('/detalhes-ponto-de-coleta-auth/:id', controller.getViewPontoAuth);
 router.get('/detalhes-ponto-de-coleta/:id', controller.getViewPonto);
 router.get('/resultado-pesquisa/:busca', controller.getPesquisa);
 router.get('/resultado-pesquisa-auth/:busca', controller.getPesquisaAuth);
+router.get('/redefinir-senha', controller.redefinirSenha);
 
 //api de dados
 router.get('/all/pagina-inicial', controller.pontosPreview);
@@ -42,6 +43,7 @@ router.post('/editar-ponto-de-coleta', controller.editPonto);
 router.post('/rate/ponto-de-coleta/:id', controller.ratePonto);
 router.post('/fav/ponto-de-coleta/:id', checkToken, controller.favPonto);
 router.post('/add/comentario/:id', checkToken, controller.addComentario);
+router.post('/esqueci-senha/:token', controller.esqueciSenha);
 
 //api de exclusão
 router.delete('/excluir-ponto-de-coleta/:id', controller.deletePonto);

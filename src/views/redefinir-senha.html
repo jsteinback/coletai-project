@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COLETAÍ - Login</title>
+    <title>COLETAÍ - Redefinir a Senha</title>
 
     <!--ESTILOS-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -29,8 +29,8 @@
                 <nav class="mdl-navigation">
                     <a href="pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase">Página
                         Inicial</a>
-                    <a href="cadastrar-usuario"
-                        class="mdl-navigation__link mdl-typography--text-uppercase">Cadastra-se</a>
+                    <a href="login"
+                        class="mdl-navigation__link mdl-typography--text-uppercase">Entrar</a>
                 </nav>
             </div>
         </header>
@@ -38,28 +38,22 @@
         <main class="mdl-grid mdl-layout__content">
             <div class="mdl-cell mdl-cell--2-col">
                 <div class="mdl-card mdl-shadow--4dp">
-                    <div class="mdl-card__media imagem-login">
-                        <img src="/images/colorido.png" alt="Coletaí Logo" class="imagem">
-                    </div>
                     <div class="mdl-card__supporting-text">
                         <form action="#">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="email">
-                                <label class="mdl-textfield__label" for="email">E-mail</label>
+                                <input class="mdl-textfield__input" type="text" id="senha">
+                                <label class="mdl-textfield__label" for="email">Nova Senha</label>
                             </div>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="password" id="senha">
-                                <label class="mdl-textfield__label" for="senha">Senha</label>
-                            </div>
-                            <div class=" mdl-textfield mdl-textfield--align-right mdl-link">
-                                <a href="#" id="esqueci-senha">Esqueci a senha</a>
+                                <input class="mdl-textfield__input" type="password" id="confirma-senha">
+                                <label class="mdl-textfield__label" for="senha">Confirme a Senha</label>
                             </div>
                         </form>
                     </div>
                     <div class="mdl-card__actions">
-                        <button id="bt-login" type="submit"
+                        <button id="bt-salvar" type="submit"
                             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent coletai-botao-login">
-                            Entrar
+                            Salvar
                         </button>
                     </div>
                 </div>

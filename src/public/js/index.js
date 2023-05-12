@@ -18,9 +18,6 @@ var script_pagina = function () {
                 const novaDiv = document.createElement('div'); // cria um novo elemento div
                 novaDiv.classList.add('mdl-cell', 'mdl-cell--3-col', 'mdl-card', 'mdl-shadow--3dp'); // define suas classes
                 novaDiv.innerHTML = `
-                <div class="mdl-card__media">
-                    <img src="/images/fundo-imagem.png">
-                </div>
                 <div class="mdl-card__title" id="nome-ponto">
                     <h4 class="mdl-card__title-text font-color-destaque">${obj.nome}</h4>
                 </div>

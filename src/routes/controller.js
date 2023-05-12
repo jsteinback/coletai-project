@@ -67,6 +67,10 @@ const getPesquisaAuth = (req, res) => {
     res.render('resultado-pesquisa-autenticado.html');
 };
 
+const redefinirSenha = (req, res) => {
+    res.render('redefinir-senha.html');
+};
+
 const addUsuario = async (req, res) => {
     const { email, senha, confirmaSenha, tipo, nome, telefone, cep, endereco, cidade, estado, documento, complemento } = req.body;
 
@@ -472,6 +476,63 @@ const addComentario = async (req, res) => {
 
 };
 
+const esqueciSenha = async (req, res) => {
+    const email = req.body.email;
+
+    //verifica se o email existe
+    const { rows } = await pool.query(queries.checkUsuario, [email]);
+    if (!rows[0]) {
+        return res.status(400).send({ mensagem: 'Endereço de e-mail não registrado.' });
+    } else {
+        //gerar o token
+        const secret = process.env.SECRET_PASS;
+        const token = jwt.sign(
+            {
+                email: email,
+            }, secret,
+            {
+                expiresIn: '1h'
+            }
+        )
+
+        usuario.tokenRedefinicaoSenha = token;
+        await usuario.save();
+
+        //envia e-mail para redefinir a senha
+        const nodemailer = require('nodemailer');
+        const remetente = 'appcoletai@gmail.com';
+        const senha = process.env.SMTP_PASS;
+        const servidorSmtp = 'smtp.gmail.com';
+
+        const transporter = nodemailer.createTransport({
+            host: servidorSmtp,
+            port: 587,
+            auth: {
+                user: remetente,
+                pass: senha,
+            },
+        });
+
+        const linkRedefinicaoSenha = `http://localhost:3000/api/redefinir-senha/:${token}`;
+
+        const mensagem = {
+            from: remetente,
+            to: email,
+            subject: 'Redefinição de senha',
+            html: `Olá,<br><br>Clique no link abaixo para redefinir sua senha:<br><br><a href="${linkRedefinicaoSenha}">${linkRedefinicaoSenha}</a>`,
+        };
+
+        transporter.sendMail(mensagem, (erro, info) => {
+            if (erro) {
+                console.log(erro);
+                return res.status(500).send({ mensagem: 'Ocorreu um erro ao enviar o e-mail de redefinição de senha.' });
+            }
+
+            return res.send({ mensagem: 'E-mail de redefinição de senha enviado com sucesso.' });
+        });
+    };
+};
+
 module.exports = {
     paginaInicial,
     getHome,
@@ -506,5 +567,7 @@ module.exports = {
     getPesquisaAuth,
     getResultadoPesquisaAuth,
     favPonto,
-    addComentario
+    addComentario,
+    esqueciSenha,
+    redefinirSenha
 };

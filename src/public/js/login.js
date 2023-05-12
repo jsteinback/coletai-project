@@ -39,6 +39,30 @@ var script_pagina = function () {
             })
             .catch(error => console.error(error));
     });
+
+    const esqueciSenhaLink = document.getElementById('esqueci-senha');
+    esqueciSenhaLink.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const email = prompt('Digite seu endereço de e-mail:');
+        if (email) {
+            fetch('/api/esqueci-senha', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: email }),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    alert(data.mensagem);
+                })
+                .catch((error) => {
+                    console.error(error);
+                    alert('Ocorreu um erro ao solicitar a redefinição de senha.');
+                });
+        }
+    });
 };
 
 script_pagina();
