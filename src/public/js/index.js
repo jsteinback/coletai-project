@@ -1,7 +1,7 @@
 var script_pagina = function () {
 
     //Busca os dados dos pontos de coleta
-    const url = 'all/pagina-inicial';
+    const url = '/api/all/pagina-inicial';
     const options = {
         method: 'GET',
         headers: {

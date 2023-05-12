@@ -13,12 +13,7 @@ const coletaiRoutes = require('./src/routes/routes');
 const app = express();
 const port = process.env.PORT || 3000;
 
-
-app.get('/pagina-inicial', (req, res) => { res.render('index.html'); });
-
-app.listen(port, () => {
-    console.log(`app listening on port ${port}`)
-});
+app.get('/', (req, res) => { res.render('index.html'); });
 
 app.use(express.static(path.join(__dirname, 'src', 'public')));
 app.set('views', path.join(__dirname, 'src/views'));
@@ -34,6 +29,10 @@ app.use('/api', coletaiRoutes); //api
 
 app.use(function (req, res, next) {
     next(createError(404));
+});
+
+app.listen(port, () => {
+    console.log(`app listening on port ${port}`)
 });
 
 module.exports = app;

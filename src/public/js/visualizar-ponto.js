@@ -43,9 +43,9 @@ var script_pagina = function () {
             botoesEstrela.forEach((botao, index) => {
                 if (index < data.classificacao) {
                     botao.classList.remove('icon-desabilitado');
-                    botao.classList.add('favoritado');
+                    botao.classList.add('classificado');
                 } else {
-                    botao.classList.remove('favoritado');
+                    botao.classList.remove('classificado');
                     botao.classList.add('icon-desabilitado');
                 }
             })
