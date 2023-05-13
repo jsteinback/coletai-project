@@ -43,7 +43,7 @@ router.post('/editar-ponto-de-coleta', controller.editPonto);
 router.post('/rate/ponto-de-coleta/:id', controller.ratePonto);
 router.post('/fav/ponto-de-coleta/:id', checkToken, controller.favPonto);
 router.post('/add/comentario/:id', checkToken, controller.addComentario);
-router.post('/esqueci-senha/:token', controller.esqueciSenha);
+router.post('/esqueci-senha', controller.esqueciSenha);
 
 //api de exclusão
 router.delete('/excluir-ponto-de-coleta/:id', controller.deletePonto);

@@ -296,12 +296,24 @@
     font-size: medium;
     color: dimgray;
     margin-left: 10px;
+    font-weight: bold;
+}
+
+.data-comentario {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    font-size: small;
+    color: dimgray;
+    margin-left: 10px;
 }
 
 .texto-comentario {
     font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
     font-size: 15px;
     color: dimgray
+}
+
+.acao-comentario {
+    color: #009688;
 }
 
 .comentarios {
@@ -331,4 +343,9 @@
 .mdl-card__actions {
     display: flex;
     justify-content: flex-end;
+}
+
+.mdl-list {
+    margin-left: 120px;
+    margin-right: 200px;
 }

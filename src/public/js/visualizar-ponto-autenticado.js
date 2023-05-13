@@ -68,31 +68,24 @@ var script_pagina = function () {
             data.comentarios.forEach(obj => { // loop sobre os dados retornados da requisição
                 let data = new Date(obj.dt_comentario);
                 let dataFormatada = data.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-                
+
                 //cria a div que recebe os comentarios
-                const divComentario = document.createElement('div');
-                divComentario.classList.add('mdl-cell', 'mdl-cell-12--col', 'mdl-card', 'mdl-shadow--2dp', 'card-comentario');
+                const divComentario = document.createElement('li');
+                divComentario.classList.add('mdl-list__item', 'mdl-list__item--three-line');
                 divComentario.innerHTML = `
-                    <div class="mdl-card__title comentarios-sub" id="nome-ponto">
-                        <h4 class="mdl-card__title-text titulo-comentario" id="usuario-comentario"
-                            style="font-weight: bold;">${obj.nome}</h4>
-                        <h4 class="mdl-card__title-text titulo-comentario" id="data-comentario">${dataFormatada}</h4>
-                    </div>
-                    <div class="mdl-card__supporting-text comentarios-sub">
-                        <span class="mdl-typography--font-light mdl-typography--subhead texto-comentario"
-                            id="texto-comentario">${obj.comentario}</span>
-                    </div>
-                    <div class="mdl-card__menu">
-                        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Responder">
+                    <span class="mdl-list__item-primary-content">
+                        <span id="usuario-comentario" class="titulo-comentario">${obj.nome}</span>
+                        <span id="data-comentario" class="data-comentario">${dataFormatada}</span>
+                        <span id="texto-comentario" class="mdl-list__item-text-body texto-comentario">${obj.comentario}</span>
+                    </span>
+                    <span class="mdl-list__item-secondary-content acao-comentario">
+                        <button class="mdl-button mdl-js-button mdl-button--icon" id="bt-responder" title="Responder">
                             <i class="material-icons">reply</i>
                         </button>
-                    </div>
-            `;
-                //adiciona a nova div na div-pai
-                document.getElementById('div-pai').appendChild(divComentario);
+                    </span>
+                `;
+                document.querySelector('.mdl-list').appendChild(divComentario);
             })
-
-
 
         })
 
@@ -228,7 +221,6 @@ var script_pagina = function () {
         }
 
     });
-
 
 } //fecha function
 

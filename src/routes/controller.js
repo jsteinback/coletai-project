@@ -495,25 +495,20 @@ const esqueciSenha = async (req, res) => {
             }
         )
 
-        usuario.tokenRedefinicaoSenha = token;
-        await usuario.save();
-
         //envia e-mail para redefinir a senha
         const nodemailer = require('nodemailer');
-        const remetente = 'appcoletai@gmail.com';
-        const senha = process.env.SMTP_PASS;
-        const servidorSmtp = 'smtp.gmail.com';
+        const { google } = require('googleapis');
 
-        const transporter = nodemailer.createTransport({
-            host: servidorSmtp,
-            port: 587,
-            auth: {
-                user: remetente,
-                pass: senha,
-            },
+        const oAuth2Client = new google.auth.OAuth2(
+            process.env.CLIENT_ID,
+            process.env.CLIENT_SECRET,
+            process.env.REDIRECT_URI
+        );
+        oAuth2Client.setCredentials({
+            refresh_token: process.env.REFRESH_TOKEN
         });
 
-        const linkRedefinicaoSenha = `http://localhost:3000/api/redefinir-senha/:${token}`;
+        const linkRedefinicaoSenha = `http://localhost:3000/api/redefinir-senha/${token}`;
 
         const mensagem = {
             from: remetente,
@@ -528,9 +523,13 @@ const esqueciSenha = async (req, res) => {
                 return res.status(500).send({ mensagem: 'Ocorreu um erro ao enviar o e-mail de redefinição de senha.' });
             }
 
-            return res.send({ mensagem: 'E-mail de redefinição de senha enviado com sucesso.' });
+            return res.send({
+                mensagem: 'E-mail de redefinição de senha enviado com sucesso.',
+                token: token
+            });
         });
     };
+
 };
 
 module.exports = {

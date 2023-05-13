@@ -43,19 +43,25 @@ var script_pagina = function () {
     const esqueciSenhaLink = document.getElementById('esqueci-senha');
     esqueciSenhaLink.addEventListener('click', (event) => {
         event.preventDefault();
-
         const email = prompt('Digite seu endereço de e-mail:');
         if (email) {
-            fetch('/api/esqueci-senha', {
+            const url = 'esqueci-senha';
+            const options = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email: email }),
-            })
-                .then((response) => response.json())
+                body: JSON.stringify({ email })
+            };
+
+            fetch(url, options)
+                .then(response => {
+                    return response.json();
+                })
                 .then((data) => {
+                    //localStorage.setItem('token', data.token);
                     alert(data.mensagem);
+                    console.log(data.token);
                 })
                 .catch((error) => {
                     console.error(error);
