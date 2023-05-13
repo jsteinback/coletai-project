@@ -4,7 +4,7 @@ var script_pagina = function () {
 
     document.getElementById('btn-sair').addEventListener('click', () => {
         localStorage.removeItem('token');
-        window.location.href = '/api/pagina-inicial';
+        window.location.href = '/pagina-inicial';
     });
 
     //Busca os dados dos pontos de coleta de acordo com pesquisa
@@ -13,7 +13,7 @@ var script_pagina = function () {
     const lastPart = parts[parts.length - 1];
     const searchText = decodeURIComponent(lastPart);
 
-    const url = '/api/get/resultado-pesquisa-auth/' + searchText;
+    const url = '/get/resultado-pesquisa-auth/' + searchText;
     const options = {
         method: 'GET',
         headers: {
@@ -39,7 +39,7 @@ var script_pagina = function () {
               </div>
               <div class="mdl-card__actions">
               <a class="mdl-button mdl-js-button card-link mdl-typography--font-light"
-              href="/api/detalhes-ponto-de-coleta-auth/${obj.id}">
+              href="/detalhes-ponto-de-coleta-auth/${obj.id}">
                   Visualizar
                   <i class="material-icons">chevron_right</i>
               </a>
@@ -58,7 +58,7 @@ var script_pagina = function () {
         if (event.key === 'Enter') {
             const searchText = event.target.value;
             if (searchText.trim().length != 0) {
-                window.location.href = '/api/resultado-pesquisa-auth/' + searchText;
+                window.location.href = '/resultado-pesquisa-auth/' + searchText;
             }
         };
     });

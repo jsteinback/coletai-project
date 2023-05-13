@@ -3,7 +3,7 @@ var script_pagina = function () {
     const token = localStorage.getItem('token');
     document.getElementById('btn-sair').addEventListener('click', () => {
         localStorage.removeItem('token');
-        window.location.href = '/api/pagina-inicial';
+        window.location.href = '/pagina-inicial';
     });
 
     //Busca os dados dos pontos de coleta
@@ -31,7 +31,7 @@ var script_pagina = function () {
                 </div>
                 <div class="mdl-card__actions">
                 <a class="mdl-button mdl-js-button card-link mdl-typography--font-light"
-                href="/api/detalhes-ponto-de-coleta-auth/${obj.id}">
+                href="/detalhes-ponto-de-coleta-auth/${obj.id}">
                     Visualizar
                     <i class="material-icons">chevron_right</i>
                 </a>
@@ -48,7 +48,7 @@ var script_pagina = function () {
         if (event.key === 'Enter') {
             const searchText = event.target.value;
             if (searchText.trim().length != 0) {
-                window.location.href = '/api/resultado-pesquisa-auth/' + searchText;
+                window.location.href = '/resultado-pesquisa-auth/' + searchText;
             }
         };
     });

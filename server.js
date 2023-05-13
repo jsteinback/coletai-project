@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(morgan('dev'))
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api', coletaiRoutes); //api
+app.use('/', coletaiRoutes); //api
 
 app.use(function (req, res, next) {
     next(createError(404));

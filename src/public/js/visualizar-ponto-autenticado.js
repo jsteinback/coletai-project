@@ -5,12 +5,12 @@ var script_pagina = function () {
 
     document.getElementById('btn-sair').addEventListener('click', () => {
         localStorage.removeItem('token');
-        window.location.href = '/api/pagina-inicial';
+        window.location.href = '/pagina-inicial';
     });
 
     //Busca os dados do ponto de coleta
     var idPonto = window.location.pathname.match(/\/(\d+)$/)[1];
-    const url = '/api/view/ponto-de-coleta-auth/' + idPonto;
+    const url = '/view-detalhes-ponto-de-coleta-auth/' + idPonto;
     const options = {
         method: 'GET',
         headers: {
@@ -104,7 +104,7 @@ var script_pagina = function () {
     //Botão favoritar
     document.getElementById('btn-favoritar').addEventListener('click', () => {
 
-        const url = '/api/fav/ponto-de-coleta/' + idPonto;
+        const url = '/fav-ponto-de-coleta/' + idPonto;
         const options = {
             method: 'POST',
             headers: {
@@ -141,7 +141,7 @@ var script_pagina = function () {
             const classificacao = Array.from(botoesEstrela).indexOf(botao) + 1;
 
             // Envia a requisição para atualizar a classificação no servidor
-            const url = '/api/rate/ponto-de-coleta/' + idPonto;
+            const url = '/rate-ponto-de-coleta/' + idPonto;
             const options = {
                 method: 'POST',
                 headers: {
@@ -154,10 +154,7 @@ var script_pagina = function () {
                     })
             };
 
-            fetch(url, options)
-                .then(response => {
-                    return response.json();
-                })
+            requisicao(url, options)
                 .then(data => {
                     //show snackbar
                     const snackbarContainer = document.querySelector('#snackbar-container-success')
@@ -178,7 +175,6 @@ var script_pagina = function () {
                         }
                     })
                 })
-                .catch(error => console.error(error));
         });
     });
 
@@ -188,7 +184,7 @@ var script_pagina = function () {
         if (event.key === 'Enter') {
             const searchText = event.target.value;
             if (searchText.trim().length != 0) {
-                window.location.href = '/api/resultado-pesquisa-auth/' + searchText;
+                window.location.href = '/resultado-pesquisa-auth/' + searchText;
             }
         };
     });
@@ -200,7 +196,7 @@ var script_pagina = function () {
         if (comentario.trim().length != 0) {
 
             // Salvar comentário
-            const url = '/api/add/comentario/' + idPonto;
+            const url = '/add-comentario/' + idPonto;
             const options = {
                 method: 'POST',
                 headers: {

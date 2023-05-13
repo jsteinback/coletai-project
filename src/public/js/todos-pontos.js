@@ -2,7 +2,7 @@ var script_pagina = function () {
 
     //Busca os dados dos pontos de coleta
     idPonto = 0;
-    const url = 'all/pontos-de-coleta';
+    const url = '/all/pontos-de-coleta';
     const options = {
         method: 'GET',
         headers: {
@@ -27,7 +27,7 @@ var script_pagina = function () {
                 </div>
                 <div class="mdl-card__actions">
                     <a class="mdl-button mdl-js-button card-link mdl-typography--font-light"
-                    href="/api/detalhes-ponto-de-coleta/${obj.id}">
+                    href="/detalhes-ponto-de-coleta/${obj.id}">
                         Visualizar
                         <i class="material-icons">chevron_right</i>
                     </a>
@@ -45,7 +45,7 @@ var script_pagina = function () {
         if (event.key === 'Enter') {
             const searchText = event.target.value;
             if (searchText.trim().length != 0) {
-                window.location.href = '/api/resultado-pesquisa/' + searchText;
+                window.location.href = '/resultado-pesquisa/' + searchText;
             }
         };
     });

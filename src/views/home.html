@@ -23,7 +23,7 @@
 
         <div class="mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
-                <a href="/api/home" class="logo-link" id="logo-link">
+                <a href="/home" class="logo-link" id="logo-link">
                     <img src="/images/branco.png" alt="Coletai" class="logo-imagem">
                 </a>
                 <div class="mdl-layout-spacer"></div>
@@ -37,13 +37,13 @@
                             <input class="mdl-textfield__input" type="text" id="search-field">
                         </div>
                     </div>
-                    <a href="/api/pontos-de-coleta-auth"
+                    <a href="/pontos-de-coleta-auth"
                         class="mdl-navigation__link mdl-typography--text-uppercase">Pontos de Coleta</a>
-                    <a href="/api/meus-pontos-de-coleta"
+                    <a href="/meus-pontos-de-coleta"
                         class="mdl-navigation__link mdl-typography--text-uppercase">Meus Pontos de Coleta</a>
-                    <a href="/api/meu-perfil" class="mdl-navigation__link mdl-typography--text-uppercase"
+                    <a href="/meu-perfil" class="mdl-navigation__link mdl-typography--text-uppercase"
                         id="btn-perfil">Meu Perfil</a>
-                    <a href="/api/pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase"
+                    <a href="/pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase"
                         id="btn-sair">Sair</a>
                 </nav>
             </div>
@@ -52,7 +52,10 @@
         <div class="mdl-layout__content">
 
             <div class="mdl-typography--text-center coletai-header">
-            </div>
+                <p class="coletai-header-text-title">Compartilhe alimentos, compartilhe amor!</p>
+                <p class="coletai-header-text">Juntos podemos alimentas quem precisa.</p>
+                <p class="coletai-header-text">Cadastre seu ponto de coleta e ajude-nos nessa missão.</p>
+              </div>
 
             <div class="coletai-cards-todos">
                 <div class="coletai-card-container mdl-grid" id="div-pai">
@@ -64,13 +67,13 @@
             </div> <!--coletai-cards-->
 
             <div class="mdl-cell mdl-cell--12-col div-link">
-                <a href="/api/pontos-de-coleta-auth" class="card-link link">
+                <a href="/pontos-de-coleta-auth" class="card-link link">
                     <div class="font-titulo-secao">Visualizar todos</div>
                 </a>
             </div>
 
             <div class="coletai-botao-central">
-                <a href="/api/cadastrar-ponto-de-coleta">
+                <a href="/cadastrar-ponto-de-coleta">
                     <button id="btn-cadastrar-ponto"
                         class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent coletai-botao-grande">
                         Cadastrar novo Ponto de Coleta
@@ -84,7 +87,7 @@
                 </div>
                 <div class="mdl-mini-footer__right-section">
                     <ul class="mdl-mini-footer__link-list">
-                        <li><a href="/api/sobre">Sobre o Coletaí</a></li>
+                        <li><a href="/sobre-auth">Sobre o Coletaí</a></li>
                     </ul>
                 </div>
             </footer>

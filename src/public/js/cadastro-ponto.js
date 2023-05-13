@@ -34,25 +34,19 @@ var script_pagina = function () {
             body: JSON.stringify(ponto)
         };
 
-        fetch(url, options)
-            .then(response => {
+        requisicao(url, options)
+            .then(data => {
                 if (response.status === 422) {
-                    return response.json().then(data => {
-                        const snackbarContainer = document.querySelector('#snackbar-container')
-                        const snackbarData = {
-                            message: data.message,
-                            timeout: 2750
-                        }
-                        snackbarContainer.MaterialSnackbar.showSnackbar(snackbarData);
-                    })
+                    const snackbarContainer = document.querySelector('#snackbar-container')
+                    const snackbarData = {
+                        message: data.message,
+                        timeout: 2750
+                    }
+                    snackbarContainer.MaterialSnackbar.showSnackbar(snackbarData);
                 } else {
-                    return response.json();
+                    window.location.href = data.redirectUrl; //redireciona pra página do ponto de coleta
                 }
             })
-            .then(data => {
-                window.location.href = data.redirectUrl; //redireciona pra página do ponto de coleta
-            })
-            .catch(error => console.error(error));
 
     });
 
@@ -62,7 +56,7 @@ var script_pagina = function () {
         if (event.key === 'Enter') {
             const searchText = event.target.value;
             if (searchText.trim().length != 0) {
-                window.location.href = '/api/resultado-pesquisa-auth/' + searchText;
+                window.location.href = '/resultado-pesquisa-auth/' + searchText;
             }
         };
     });

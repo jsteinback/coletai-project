@@ -6,7 +6,7 @@ var script_pagina = function () {
     const lastPart = parts[parts.length - 1];
     const searchText = decodeURIComponent(lastPart);
 
-    const url = '/api/get/resultado-pesquisa/' + searchText;
+    const url = '/get/resultado-pesquisa/' + searchText;
     const options = {
         method: 'GET',
         headers: {
@@ -31,7 +31,7 @@ var script_pagina = function () {
                 </div>
                 <div class="mdl-card__actions">
                     <a class="mdl-button mdl-js-button card-link mdl-typography--font-light"
-                        href="/api/detalhes-ponto-de-coleta/${obj.id}">
+                        href="/detalhes-ponto-de-coleta/${obj.id}">
                         Visualizar
                         <i class="material-icons">chevron_right</i>
                     </a>
@@ -50,7 +50,7 @@ var script_pagina = function () {
         if (event.key === 'Enter') {
             const searchText = event.target.value;
             if (searchText.trim().length != 0) {
-                window.location.href = '/api/resultado-pesquisa/' + searchText;
+                window.location.href = '/resultado-pesquisa/' + searchText;
             }
         };
     });

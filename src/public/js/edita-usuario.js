@@ -4,7 +4,7 @@ var script_pagina = function () {
 
     document.getElementById('btn-sair').addEventListener('click', () => {
         localStorage.removeItem('token');
-        window.location.href = '/api/pagina-inicial';
+        window.location.href = '/pagina-inicial';
     });
 
     //Busca os dados do usuário
@@ -127,7 +127,7 @@ var script_pagina = function () {
         if (event.key === 'Enter') {
             const searchText = event.target.value;
             if (searchText.trim().length != 0) {
-                window.location.href = '/api/resultado-pesquisa-auth/' + searchText;
+                window.location.href = '/resultado-pesquisa-auth/' + searchText;
             }
         };
     });

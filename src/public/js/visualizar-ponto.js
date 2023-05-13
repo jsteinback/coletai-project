@@ -3,7 +3,7 @@ var script_pagina = function () {
 
     //Busca os dados do ponto de coleta
     var idPonto = window.location.pathname.match(/\/(\d+)$/)[1];
-    const url = '/api/view/ponto-de-coleta/' + idPonto;
+    const url = '/view/ponto-de-coleta/' + idPonto;
     const options = {
         method: 'GET',
         headers: {
@@ -70,7 +70,7 @@ var script_pagina = function () {
         if (event.key === 'Enter') {
             const searchText = event.target.value;
             if (searchText.trim().length != 0) {
-                window.location.href = '/api/resultado-pesquisa/' + searchText;
+                window.location.href = '/resultado-pesquisa/' + searchText;
             }
         };
     });

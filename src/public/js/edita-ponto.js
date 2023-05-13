@@ -4,12 +4,12 @@ var script_pagina = function () {
 
     document.getElementById('btn-sair').addEventListener('click', () => {
         localStorage.removeItem('token');
-        window.location.href = '/api/pagina-inicial';
+        window.location.href = '/pagina-inicial';
     });
 
     //Busca os dados do ponto de coleta
     var idPonto = window.location.pathname.match(/\/(\d+)$/)[1];
-    const url = '/api/edit/ponto-de-coleta/' + idPonto;
+    const url = '/edit/ponto-de-coleta/' + idPonto;
     const options = {
         method: 'GET',
         headers: {
@@ -47,7 +47,7 @@ var script_pagina = function () {
             id: idPonto
         }
 
-        const url = '/api/editar-ponto-de-coleta';
+        const url = '/editar-ponto-de-coleta';
         const options = {
             method: 'POST',
             headers: {
@@ -93,7 +93,7 @@ var script_pagina = function () {
         dialog.querySelector('.confirm').addEventListener('click', function () {
             dialog.close();
 
-            const url = '/api/excluir-ponto-de-coleta/' + idPonto;
+            const url = '/excluir-ponto-de-coleta/' + idPonto;
             const options = {
                 method: 'DELETE',
                 headers: {
@@ -123,7 +123,7 @@ var script_pagina = function () {
         if (event.key === 'Enter') {
             const searchText = event.target.value;
             if (searchText.trim().length != 0) {
-                window.location.href = '/api/resultado-pesquisa-auth/' + searchText;
+                window.location.href = '/resultado-pesquisa-auth/' + searchText;
             }
         };
     });

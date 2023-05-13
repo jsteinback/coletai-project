@@ -109,7 +109,6 @@ var script_pagina = function () {
             .catch(error => console.error(error));
 
     });
-
 };
 
 script_pagina();

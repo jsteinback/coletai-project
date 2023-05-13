@@ -116,7 +116,7 @@ const addUsuario = async (req, res) => {
             }
         });
 
-        res.status(200).json({ message: 'Usuário cadastrado com sucesso!', redirectUrl: '/api/login' });
+        res.status(200).json({ message: 'Usuário cadastrado com sucesso!', redirectUrl: '/login' });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Erro ao consultar o banco de dados' });
@@ -160,7 +160,7 @@ const login = async (req, res) => {
             }, secret
         )
 
-        res.status(200).json({ message: 'Login bem sucedido', token, redirectUrl: '/api/home' });
+        res.status(200).json({ message: 'Login bem sucedido', token, redirectUrl: '/home' });
 
     } catch (error) {
         console.error(error);
@@ -179,17 +179,18 @@ const addPonto = async (req, res) => {
     try {
         const dt_cadastro = new Date();
 
-        //validar usuário conectado
+        /*
         const token = req.headers['authorization'];
         const decodedToken = jwt.verify(token, process.env.SECRET);
         const idUsuario = decodedToken.id;
+        */
 
         //cadastrar ponto de coleta
-        pool.query(queries.addPonto, [nome, descricao, telefone, cep, endereco, cidade, estado, dt_cadastro, idUsuario, responsavel], (error, results) => {
+        pool.query(queries.addPonto, [nome, descricao, telefone, cep, endereco, cidade, estado, dt_cadastro, req.idUsuario, responsavel], (error, results) => {
             if (error) throw error;
 
             const idPonto = results.rows[0].id;
-            const url = '/api/detalhes-ponto-de-coleta-auth/' + idPonto
+            const url = '/detalhes-ponto-de-coleta-auth/' + idPonto
             res.status(200).json({ message: 'Ponto de Coleta cadastrado com sucesso!', redirectUrl: url });
         });
     } catch (error) {
@@ -297,7 +298,7 @@ const deletePonto = async (req, res) => {
     const id = parseInt(req.params.id);
     pool.query(queries.deletePonto, [id], (error, results) => {
         if (error) throw error;
-        return res.status(200).json({ message: 'Ponto de Coleta excluído com sucesso!', redirectUrl: '/api/meus-pontos-de-coleta' });
+        return res.status(200).json({ message: 'Ponto de Coleta excluído com sucesso!', redirectUrl: '/meus-pontos-de-coleta' });
     });
 }
 
