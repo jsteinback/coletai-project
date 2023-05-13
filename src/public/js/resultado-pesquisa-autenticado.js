@@ -13,7 +13,7 @@ var script_pagina = function () {
     const lastPart = parts[parts.length - 1];
     const searchText = decodeURIComponent(lastPart);
 
-    const url = '/get/resultado-pesquisa-auth/' + searchText;
+    const url = '/get-resultado-pesquisa-auth/' + searchText;
     const options = {
         method: 'GET',
         headers: {
@@ -22,10 +22,7 @@ var script_pagina = function () {
         }
     };
 
-    fetch(url, options)
-        .then(response => {
-            return response.json();
-        })
+    requisicao(url, options)
         .then(data => {
             data.forEach(obj => { // loop sobre os dados retornados da requisição
                 const novaDiv = document.createElement('div'); // cria um novo elemento div
@@ -50,7 +47,6 @@ var script_pagina = function () {
             })
 
         })
-        .catch(error => console.error(error));
 
     //campo de pesquisa
     const searchField = document.getElementById('search-field');

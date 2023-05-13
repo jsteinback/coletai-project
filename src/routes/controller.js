@@ -274,10 +274,20 @@ const pontosPreview = async (req, res) => {
 
 const getPonto = async (req, res) => {
     const id = parseInt(req.params.id);
-    pool.query(queries.getPontoById, [id], (error, results) => {
-        if (error) throw error;
-        return res.status(200).json(results.rows[0]);
-    });
+
+    try {
+        const { rows } = await pool.query(queries.getPontoByIdUser, [id, req.idUsuario]);
+        //verifica se o ponto de coleta pertence ao usuário logado
+        if(rows[0]) {
+            return res.status(200).json(rows[0]);
+        } else {
+            return res.status(403).json({ status: 403, message: 'Sem premissão de acesso ao Ponto de Coleta informado!' });
+        }
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Erro ao consultar o banco de dados' });
+    }
 }
 
 const editPonto = async (req, res) => {

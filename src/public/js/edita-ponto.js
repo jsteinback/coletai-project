@@ -20,15 +20,27 @@ var script_pagina = function () {
 
     requisicao(url, options)
         .then(data => {
-            idPonto = data.id;
-            document.getElementById('nome').value = data.nome;
-            document.getElementById('descricao').value = data.descricao;
-            document.getElementById('responsavel').value = data.responsavel;
-            document.getElementById('telefone').value = data.telefone;
-            document.getElementById('cep').value = data.cep;
-            document.getElementById('endereco').value = data.endereco;
-            document.getElementById('cidade').value = data.cidade;
-            document.getElementById('estado').value = data.estado;
+            if (data.status === 403) {
+                const snackbarContainer = document.querySelector('#snackbar-container')
+                const snackbarData = {
+                    message: data.message,
+                    timeout: 2750
+                }
+                snackbarContainer.MaterialSnackbar.showSnackbar(snackbarData);
+                // Desabilitar botões
+                document.getElementById('bt-salvar-ponto').disabled = true;
+                document.getElementById('bt-excluir-ponto').disabled = true;
+            } else {
+                idPonto = data.id;
+                document.getElementById('nome').value = data.nome;
+                document.getElementById('descricao').value = data.descricao;
+                document.getElementById('responsavel').value = data.responsavel;
+                document.getElementById('telefone').value = data.telefone;
+                document.getElementById('cep').value = data.cep;
+                document.getElementById('endereco').value = data.endereco;
+                document.getElementById('cidade').value = data.cidade;
+                document.getElementById('estado').value = data.estado;
+            }
         })
 
     //Atualizar os dados do ponto de coleta

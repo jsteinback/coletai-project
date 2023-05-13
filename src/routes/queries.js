@@ -10,6 +10,7 @@ const updateUsuarioPJ = "UPDATE usuario_pj SET nome_responsavel = $2 WHERE id = 
 const getMeusPontos = "SELECT id, nome, descricao FROM ponto_coleta WHERE id_usuario = $1 ORDER BY dt_cadastro DESC";
 const getTodosPontos = "SELECT id, nome, descricao FROM ponto_coleta ORDER BY dt_cadastro DESC";
 const getPontoById = "SELECT * FROM ponto_coleta WHERE id = $1";
+const getPontoByIdUser = "SELECT * FROM ponto_coleta WHERE id = $1 AND id_usuario=$2";
 const updatePonto = "UPDATE ponto_coleta SET nome = $2, descricao = $3, responsavel = $4, telefone = $5, cep = $6, endereco = $7, cidade = $8, estado = $9 WHERE id = $1";
 const deletePonto = "DELETE FROM ponto_coleta WHERE id = $1";
 const pontosPreview = "SELECT id, nome, descricao FROM ponto_coleta ORDER BY dt_cadastro DESC LIMIT 4";
@@ -38,6 +39,7 @@ module.exports = {
     getMeusPontos,
     getTodosPontos,
     getPontoById,
+    getPontoByIdUser,
     updatePonto,
     deletePonto,
     pontosPreview,
