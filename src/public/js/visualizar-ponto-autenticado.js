@@ -218,6 +218,11 @@ var script_pagina = function () {
 
     });
 
+    //Responder comentário
+    document.getElementById('bt-responder').addEventListener('click', () => {
+        console.log('teste responder')
+    });
+
     //Botão compartilhar
     document.getElementById('btn-share').addEventListener('click', () => {
         const texto = 'Conheça este Ponto de Coleta! https://coletaiapp.herokuapp.com/detalhes-ponto-de-coleta/' + idPonto;
