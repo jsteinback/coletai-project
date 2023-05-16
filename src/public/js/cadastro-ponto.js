@@ -36,7 +36,7 @@ var script_pagina = function () {
 
         requisicao(url, options)
             .then(data => {
-                if (response.status === 422) {
+                if (data.status === 422) {
                     const snackbarContainer = document.querySelector('#snackbar-container')
                     const snackbarData = {
                         message: data.message,

@@ -173,7 +173,7 @@ const addPonto = async (req, res) => {
     const { nome, descricao, telefone, cep, endereco, cidade, estado, responsavel } = req.body;
 
     if (!nome || !descricao || !telefone || !cep || !endereco || !cidade || !estado || !responsavel) {
-        return res.status(422).json({ message: 'Favor preencher todos os campos!' })
+        return res.status(422).json({ status: 422, message: 'Favor preencher todos os campos!' })
     }
 
     try {
