@@ -14,7 +14,6 @@ var script_pagina = function () {
             return response.json();
         })
         .then(data => {
-            if (data.status === 200) {
                 data.forEach(obj => { // loop sobre os dados retornados da requisição
                     const novaDiv = document.createElement('div'); // cria um novo elemento div
                     novaDiv.classList.add('mdl-cell', 'mdl-cell--3-col', 'mdl-card', 'mdl-shadow--3dp'); // define suas classes
@@ -36,9 +35,6 @@ var script_pagina = function () {
 
                     document.getElementById('div-pai').appendChild(novaDiv); // adiciona a nova div ao elemento pai
                 })
-            } else {
-                console.log(data.message);
-            }
         })
         .catch(error => console.error(error));
 
