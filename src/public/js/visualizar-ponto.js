@@ -64,6 +64,13 @@ var script_pagina = function () {
         window.open(urlLocal, '_blank');
     });
 
+    //Botão compartilhar
+    document.getElementById('btn-share').addEventListener('click', () => {
+        const texto = 'Conheça este Ponto de Coleta! https://coletaiapp.herokuapp.com/detalhes-ponto-de-coleta/' + idPonto;
+        const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
+        window.open(url, '_blank');
+    });
+
     //campo de pesquisa
     const searchField = document.getElementById('search-field');
     searchField.addEventListener('keydown', (event) => {
