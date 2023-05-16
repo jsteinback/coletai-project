@@ -264,12 +264,9 @@ const todosPontos = async (req, res) => {
 
 const pontosPreview = async (req, res) => {
     try {
-        const { rows } = await pool.query(queries.pontosPreview)
-        if (rows.length > 0) {
-            return res.status(200).json(rows);
-        } else {
-            return res.status(403).json({ status: 403, message: 'Sem dados para apresentar.' });
-        }
+        pool.query(queries.pontosPreview, (error, results) => {
+            return res.status(200).json(results.rows);
+        })
     } catch (error) {
         throw error;
     }
