@@ -38,14 +38,12 @@
                             <input class="mdl-textfield__input" type="text" id="search-field">
                         </div>
                     </div>
-                    <a href="/pontos-de-coleta-auth"
-                        class="mdl-navigation__link mdl-typography--text-uppercase">Pontos de
-                        Coleta</a>
-                    <a href="/meus-pontos-de-coleta"
-                        class="mdl-navigation__link mdl-typography--text-uppercase">Meus Pontos
-                        de Coleta</a>
-                    <a href="/meu-perfil" class="mdl-navigation__link mdl-typography--text-uppercase">Meu
-                        Perfil</a>
+                    <a href="/meus-pontos-de-coleta" class="mdl-navigation__link mdl-typography--text-uppercase">Meus
+                        Pontos de Coleta</a>
+                    <a href="/pontos-de-coleta-favoritos"
+                        class="mdl-navigation__link mdl-typography--text-uppercase">Favoritos</a>
+                    <a href="/meu-perfil" class="mdl-navigation__link mdl-typography--text-uppercase"
+                        id="btn-perfil">Meu Perfil</a>
                     <a href="/pagina-inicial" class="mdl-navigation__link mdl-typography--text-uppercase"
                         id="btn-sair">Sair</a>
                 </nav>
@@ -93,8 +91,7 @@
 
                         <div
                             class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
-                            <input class="mdl-textfield__input" type="text" id="cep" pattern="[0-9]*"
-                                maxlength="8">
+                            <input class="mdl-textfield__input" type="text" id="cep" pattern="[0-9]*" maxlength="8">
                             <label class="mdl-textfield__label" for="cep-ponto">CEP</label>
                             <span class="mdl-textfield__error">Apenas números</span>
                         </div>
@@ -116,16 +113,6 @@
                             <input class="mdl-textfield__input" type="text" id="estado" maxlength="2">
                             <label class="mdl-textfield__label" for="estado-ponto">Estado</label>
                         </div>
-                        <!--
-                        <div class="mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield mdl-textfield--file">
-                            <input class="mdl-textfield__input" type="text" readonly id="uploadFile">
-                            <div class="mdl-button mdl-button--file">
-                                <input type="file" id="uploadBtn" multiple
-                                    onchange="document.getElementById('uploadFile').value = this.files[0].name;">
-                            </div>
-                        </div>
-                        -->
-
                     </form>
 
                     <div class="mdl-cell mdl-cell--12-col mdl-grid">

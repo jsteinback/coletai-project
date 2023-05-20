@@ -73,6 +73,10 @@ const getRedefinirSenha = (req, res) => {
     res.render('redefinir-senha.html');
 };
 
+const getPontosFavoritos = (req, res) => {
+    res.render('favoritos-pontos.html');
+};
+
 const addUsuario = async (req, res) => {
     const { email, senha, confirmaSenha, tipo, nome, telefone, cep, endereco, cidade, estado, documento, complemento } = req.body;
 
@@ -549,6 +553,16 @@ const redefinirSenha = async (req, res) => {
     }
 };
 
+const pontosFavoritos = async (req, res) => {
+    try {
+        pool.query(queries.pontosFavoritos, [req.idUsuario], (error, results) => {
+            return res.status(200).json(results.rows);
+        })
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     paginaInicial,
     getHome,
@@ -586,5 +600,7 @@ module.exports = {
     addComentario,
     esqueciSenha,
     getRedefinirSenha,
-    redefinirSenha
+    redefinirSenha,
+    getPontosFavoritos,
+    pontosFavoritos
 };

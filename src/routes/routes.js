@@ -21,6 +21,7 @@ router.get('/sobre-auth', controller.getSobreAuth);
 router.get('/detalhes-ponto-de-coleta-auth/:id', controller.getViewPontoAuth); //checktoken ok
 router.get('/resultado-pesquisa-auth/:busca', controller.getPesquisaAuth); //checktoken ok
 router.get('/redefinir-senha', controller.getRedefinirSenha);
+router.get('/pontos-de-coleta-favoritos', controller.getPontosFavoritos);
 
 //api de dados
 router.get('/all/pagina-inicial', controller.pontosPreview);
@@ -35,6 +36,7 @@ router.get('/get-resultado-pesquisa-auth/:busca', checkToken, controller.getResu
 router.get('/edit/meu-perfil', checkToken, controller.getUsuario); //checktoken ok
 router.get('/all/meus-pontos-de-coleta', checkToken, controller.meusPontos); //checktoken ok
 router.get('/edit/ponto-de-coleta/:id', checkToken, controller.getPonto); //checktoken ok
+router.get('/all/pontos-de-coleta-favoritos', checkToken, controller.pontosFavoritos); 
 
 //post
 router.post('/login', controller.login);

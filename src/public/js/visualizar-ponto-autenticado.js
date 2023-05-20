@@ -1,6 +1,51 @@
-var fn_botao = function (elemento, comentario) {
-    console.log(elemento, comentario);
+function bt_responder(button, idPonto) {
+    button.disabled = true;
+
+    // Obtém o elemento pai do botão (li)
+    const comentario = button.closest('li');
+
+    // Cria a div para inserção do comentário de resposta
+    const divResposta = document.createElement('div');
+    divResposta.classList.add('mdl-cell', 'mdl-cell--5-col', 'mdl-textfield', 'mdl-js-textfield', 'mdl-textfield--floating-label', 'mdl-textfield--align-top');
+
+    // Cria a textarea
+    const textarea = document.createElement('textarea');
+    textarea.classList.add('mdl-textfield__input', 'text-disabled');
+    textarea.type = 'text';
+    textarea.rows = '1';
+    textarea.id = 'input-resposta';
+
+    // Cria a label da textarea
+    const label = document.createElement('label');
+    label.classList.add('mdl-textfield__label', 'title-disabled');
+    label.htmlFor = 'resposta';
+    //label.textContent = 'Responder comentário...';
+
+    // Anexa a textarea e a label à div de resposta
+    divResposta.appendChild(textarea);
+    divResposta.appendChild(label);
+
+    // Cria o botão de comentar
+    const divBotao = document.createElement('div');
+    divBotao.classList.add('mdl-cell', 'mdl-cell--1-col');
+
+    const btComentar = document.createElement('button');
+    btComentar.id = 'bt-responder';
+    btComentar.type = 'submit';
+    btComentar.classList.add('mdl-button', 'mdl-js-button', 'mdl-button--fab', 'mdl-button--mini-fab', 'mdl-button--colored', 'coletai-botao-comentario');
+
+    const icon = document.createElement('i');
+    icon.classList.add('material-icons');
+    icon.textContent = 'add';
+
+    btComentar.appendChild(icon);
+    divBotao.appendChild(btComentar);
+
+    // Anexa a div de resposta e o botão à li do comentário
+    comentario.appendChild(divResposta);
+    comentario.appendChild(divBotao);
 }
+
 
 var script_pagina = function () {
     const botoesEstrela = document.querySelectorAll('.icon-classificacao');
@@ -73,7 +118,7 @@ var script_pagina = function () {
                 let data = new Date(obj.dt_comentario);
                 let dataFormatada = data.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 
-                //cria a div que recebe os comentarios
+                //cria o elemento que recebe os comentarios
                 const divComentario = document.createElement('li');
                 divComentario.classList.add('mdl-list__item', 'mdl-list__item--three-line');
                 divComentario.innerHTML = `
@@ -83,7 +128,7 @@ var script_pagina = function () {
                         <span id="texto-comentario" class="mdl-list__item-text-body texto-comentario">${obj.comentario}</span>
                     </span>
                     <span class="mdl-list__item-secondary-content acao-comentario">
-                        <button class="mdl-button mdl-js-button mdl-button--icon" id="bt-responder" title="Responder" onclick="fn_botao(this, '${obj.nome}')">
+                        <button class="mdl-button mdl-js-button mdl-button--icon" id="bt-responder" title="Responder" onclick="bt_responder(this, '${obj.id}')">
                             <i class="material-icons">reply</i>
                         </button>
                     </span>
