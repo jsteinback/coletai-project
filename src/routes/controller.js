@@ -2,6 +2,8 @@ const pool = require('../../database');
 const queries = require('./queries');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 const paginaInicial = (req, res) => {
     res.render('index.html');
@@ -67,7 +69,7 @@ const getPesquisaAuth = (req, res) => {
     res.render('resultado-pesquisa-autenticado.html');
 };
 
-const redefinirSenha = (req, res) => {
+const getRedefinirSenha = (req, res) => {
     res.render('redefinir-senha.html');
 };
 
@@ -178,12 +180,6 @@ const addPonto = async (req, res) => {
 
     try {
         const dt_cadastro = new Date();
-
-        /*
-        const token = req.headers['authorization'];
-        const decodedToken = jwt.verify(token, process.env.SECRET);
-        const idUsuario = decodedToken.id;
-        */
 
         //cadastrar ponto de coleta
         pool.query(queries.addPonto, [nome, descricao, telefone, cep, endereco, cidade, estado, dt_cadastro, req.idUsuario, responsavel], (error, results) => {
@@ -495,52 +491,62 @@ const esqueciSenha = async (req, res) => {
     if (!rows[0]) {
         return res.status(400).send({ mensagem: 'Endereço de e-mail não registrado.' });
     } else {
-        //gerar o token
-        const secret = process.env.SECRET_PASS;
-        const token = jwt.sign(
-            {
-                email: email,
-            }, secret,
-            {
-                expiresIn: '1h'
-            }
-        )
+        try {
+            // Cria um token de redefinição de senha usando JWT
+            const secretKey = process.env.SECRET_PASS;
+            const token = jwt.sign({ email }, secretKey, { expiresIn: '12h' });
 
-        //envia e-mail para redefinir a senha
-        const nodemailer = require('nodemailer');
-        const { google } = require('googleapis');
-
-        const oAuth2Client = new google.auth.OAuth2(
-            process.env.CLIENT_ID,
-            process.env.CLIENT_SECRET,
-            process.env.REDIRECT_URI
-        );
-        oAuth2Client.setCredentials({
-            refresh_token: process.env.REFRESH_TOKEN
-        });
-
-        const linkRedefinicaoSenha = `http://localhost:3000/api/redefinir-senha/${token}`;
-
-        const mensagem = {
-            from: remetente,
-            to: email,
-            subject: 'Redefinição de senha',
-            html: `Olá,<br><br>Clique no link abaixo para redefinir sua senha:<br><br><a href="${linkRedefinicaoSenha}">${linkRedefinicaoSenha}</a>`,
-        };
-
-        transporter.sendMail(mensagem, (erro, info) => {
-            if (erro) {
-                console.log(erro);
-                return res.status(500).send({ mensagem: 'Ocorreu um erro ao enviar o e-mail de redefinição de senha.' });
+            const msg = {
+                to: email,
+                from: 'appcoletai@gmail.com',
+                subject: 'Recuperação de Senha Coletai',
+                text: `Para redefinir sua senha, clique no link a seguir: http://localhost:3000/redefinir-senha?token=${token}`,
             }
 
-            return res.send({
-                mensagem: 'E-mail de redefinição de senha enviado com sucesso.',
-                token: token
-            });
-        });
+            await sgMail.send(msg);
+
+            return res.status(200).send({ mensagem: 'E-mail enviado!', token });
+
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send({ mensagem: 'Erro ao enviar o e-mail.' });
+        }
     };
 
+};
+
+const redefinirSenha = async (req, res) => {
+    const { senha, checkSenha } = req.body;
+
+    if (!senha) {
+        return res.status(422).json({ message: 'A senha é obrigatória!' })
+    }
+
+    if (!checkSenha) {
+        return res.status(422).json({ message: 'Confirme a senha!' })
+    }
+
+    if (senha !== checkSenha) {
+        return res.status(422).json({ message: 'As senhas não conferem!' })
+    }
+
+    // criar senha criptografada
+    const salt = await bcrypt.genSalt(10);
+    const senhaHash = await bcrypt.hash(senha, salt);
+
+    // busca email no token
+    const token = req.headers["authorization"];
+    const decodedToken = jwt.verify(token, process.env.SECRET_PASS);
+    const email = decodedToken.email;
+
+    try {
+        pool.query(queries.redefinirSenha, [email, senhaHash], (error, results) => {
+            return res.status(200).json({ message: 'Senha alterada com sucesso!', redirectUrl: '/login' });
+        })
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Erro ao consultar o banco de dados' });
+    }
 };
 
 module.exports = {
@@ -579,5 +585,6 @@ module.exports = {
     favPonto,
     addComentario,
     esqueciSenha,
+    getRedefinirSenha,
     redefinirSenha
 };

@@ -25,6 +25,7 @@ const reUpdateFavorito = "UPDATE usuario_favorito SET favorito = $3, dt_habilita
 const checkFavorito = "SELECT favorito FROM usuario_favorito WHERE id_usuario = $1 AND id_ponto = $2";
 const insertComentario = "INSERT INTO ponto_coleta_comentario (dt_comentario, comentario, id_usuario, id_ponto) VALUES ($4, $3, $1, $2)";
 const getComentario = "SELECT c.id_ponto, c.id_usuario, u.nome, c.dt_comentario, c.comentario FROM ponto_coleta_comentario c INNER JOIN usuario u ON c.id_usuario = u.id WHERE id_ponto = $1 ORDER BY dt_comentario DESC";
+const redefinirSenha = "UPDATE usuario SET senha = $2 WHERE email = $1";
 
 module.exports = {
     addUsuario,
@@ -53,5 +54,6 @@ module.exports = {
     checkFavorito,
     reUpdateFavorito,
     insertComentario,
-    getComentario
+    getComentario,
+    redefinirSenha
 };

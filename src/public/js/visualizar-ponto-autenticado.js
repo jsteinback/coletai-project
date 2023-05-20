@@ -1,3 +1,7 @@
+var fn_botao = function (elemento, comentario) {
+    console.log(elemento, comentario);
+}
+
 var script_pagina = function () {
     const botoesEstrela = document.querySelectorAll('.icon-classificacao');
     const botaoFavorito = document.querySelector('.icon-favorito');
@@ -79,7 +83,7 @@ var script_pagina = function () {
                         <span id="texto-comentario" class="mdl-list__item-text-body texto-comentario">${obj.comentario}</span>
                     </span>
                     <span class="mdl-list__item-secondary-content acao-comentario">
-                        <button class="mdl-button mdl-js-button mdl-button--icon" id="bt-responder" title="Responder">
+                        <button class="mdl-button mdl-js-button mdl-button--icon" id="bt-responder" title="Responder" onclick="fn_botao(this, '${obj.nome}')">
                             <i class="material-icons">reply</i>
                         </button>
                     </span>
@@ -216,11 +220,6 @@ var script_pagina = function () {
                 })
         }
 
-    });
-
-    //Responder comentário
-    document.getElementById('bt-responder').addEventListener('click', () => {
-        console.log('teste responder')
     });
 
     //Botão compartilhar

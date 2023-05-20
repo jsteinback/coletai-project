@@ -60,9 +60,8 @@ var script_pagina = function () {
                     return response.json();
                 })
                 .then((data) => {
-                    //localStorage.setItem('token', data.token);
+                    localStorage.setItem('token', data.token);
                     alert(data.mensagem);
-                    console.log(data.token);
                 })
                 .catch((error) => {
                     console.error(error);
