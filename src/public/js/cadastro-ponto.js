@@ -44,7 +44,16 @@ var script_pagina = function () {
                     }
                     snackbarContainer.MaterialSnackbar.showSnackbar(snackbarData);
                 } else {
-                    window.location.href = data.redirectUrl; //redireciona pra página do ponto de coleta
+                    const snackbarContainer = document.querySelector('#snackbar-container-success')
+                    const snackbarData = {
+                        message: data.message,
+                        timeout: 2000
+                    }
+                    snackbarContainer.MaterialSnackbar.showSnackbar(snackbarData);
+
+                    setTimeout(() => {
+                        window.location.href = data.redirectUrl; // Redireciona para a página do ponto de coleta
+                    }, 2500);
                 }
             })
 

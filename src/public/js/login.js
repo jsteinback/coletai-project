@@ -44,7 +44,7 @@ var script_pagina = function () {
     esqueciSenhaLink.addEventListener('click', (event) => {
         event.preventDefault();
         const email = prompt('Digite seu endereço de e-mail:');
-        
+
         if (email) {
             const url = 'esqueci-senha';
             const options = {

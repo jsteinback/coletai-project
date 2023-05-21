@@ -166,7 +166,7 @@ const login = async (req, res) => {
             }, secret
         )
 
-        res.status(200).json({ message: 'Login bem sucedido', token, redirectUrl: '/home' });
+        res.status(200).json({ token, redirectUrl: '/home' });
 
     } catch (error) {
         console.error(error);
@@ -332,6 +332,12 @@ const getDetalhesPontoAuth = async (req, res) => {
             comentarios = getComentarios.rows;
         }
 
+        //busca as respostas dos comentário
+        const getRespostas = await pool.query(queries.getResposta, [id]);
+        if (getRespostas.rows[0]) {
+            respostas = getRespostas.rows;
+        }
+
         // verifica se é favorito
         const checkFavorito = await pool.query(queries.checkFavorito, [idUsuario, id]);
         if (checkFavorito.rows[0]) {
@@ -344,10 +350,10 @@ const getDetalhesPontoAuth = async (req, res) => {
         if (checkClassificacao.rows[0]) {
             // tem classificação, manda no results
             const classificacao = checkClassificacao.rows[0].classificacao;
-            return res.status(200).json({ ...results.rows[0], comentarios, favorito, classificacao });
+            return res.status(200).json({ ...results.rows[0], comentarios, respostas, favorito, classificacao });
         } else {
             // não tem classificação
-            return res.status(200).json({ ...results.rows[0], comentarios, favorito });
+            return res.status(200).json({ ...results.rows[0], comentarios, respostas, favorito });
         }
     } catch (error) {
         console.error(error);
@@ -357,10 +363,17 @@ const getDetalhesPontoAuth = async (req, res) => {
 
 const getDetalhesPonto = async (req, res) => {
     const id = parseInt(req.params.id);
+    let comentarios;
 
     try {
         // busca os dados do ponto de coleta
         const results = await pool.query(queries.getPontoById, [id]);
+
+        //busca os comentarios
+        const getComentarios = await pool.query(queries.getComentario, [id]);
+        if (getComentarios.rows[0]) {
+            comentarios = getComentarios.rows;
+        }
 
         // busca a classificação
         const checkClassificacao = await pool.query(queries.checkClassificacaoGeral, [id]);
@@ -368,10 +381,10 @@ const getDetalhesPonto = async (req, res) => {
         if (checkClassificacao.rows[0]) {
             // tem classificação, manda no results
             const classificacao = checkClassificacao.rows[0].classificacao;
-            return res.status(200).json({ ...results.rows[0], classificacao });
+            return res.status(200).json({ ...results.rows[0], comentarios, classificacao });
         } else {
             // não tem classificação
-            return res.status(200).json(results.rows[0]);
+            return res.status(200).json(results.rows[0], comentarios);
         }
     } catch (error) {
         console.error(error);
@@ -479,6 +492,23 @@ const addComentario = async (req, res) => {
         const data = new Date();
         pool.query(queries.insertComentario, [idUsuario, idPonto, comentario, data], (error, results) => {
             return res.status(200).json({ message: 'Comentario adicionado' });
+        })
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Erro ao executar a consulta.' });
+    }
+
+};
+
+const addResposta = async (req, res) => {
+    const { comentario, idPai, idPonto } = req.body;
+    const idUsuario = req.idUsuario;
+    //const idPai = parseInt(req.params.id);
+
+    try {
+        const data = new Date();
+        pool.query(queries.insertResposta, [idPai, data, comentario, idUsuario, idPonto], (error, results) => {
+            return res.status(200).json({ message: 'Resposta adicionada' });
         })
     } catch (error) {
         console.error(error);
@@ -602,5 +632,6 @@ module.exports = {
     getRedefinirSenha,
     redefinirSenha,
     getPontosFavoritos,
-    pontosFavoritos
+    pontosFavoritos,
+    addResposta
 };

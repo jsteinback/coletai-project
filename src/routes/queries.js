@@ -24,9 +24,11 @@ const updateFavorito = "UPDATE usuario_favorito	SET favorito = $3, dt_desabilita
 const reUpdateFavorito = "UPDATE usuario_favorito SET favorito = $3, dt_habilitado = $4 WHERE id_usuario = $1 AND id_ponto = $2";
 const checkFavorito = "SELECT favorito FROM usuario_favorito WHERE id_usuario = $1 AND id_ponto = $2";
 const insertComentario = "INSERT INTO ponto_coleta_comentario (dt_comentario, comentario, id_usuario, id_ponto) VALUES ($4, $3, $1, $2)";
-const getComentario = "SELECT c.id_ponto, c.id_usuario, u.nome, c.dt_comentario, c.comentario, c.id FROM ponto_coleta_comentario c INNER JOIN usuario u ON c.id_usuario = u.id WHERE id_ponto = $1 ORDER BY dt_comentario DESC";
+const getComentario = "SELECT c.id_ponto, c.id_usuario, u.nome, c.dt_comentario, c.comentario, c.id FROM ponto_coleta_comentario c INNER JOIN usuario u ON c.id_usuario = u.id WHERE id_ponto = $1 AND id_pai IS NULL ORDER BY dt_comentario DESC";
 const redefinirSenha = "UPDATE usuario SET senha = $2 WHERE email = $1";
 const pontosFavoritos = "SELECT a.id_ponto, b.nome, b.descricao FROM usuario_favorito a INNER JOIN ponto_coleta b ON a.id_ponto = b.id WHERE a.id_usuario = $1 AND a.favorito = true ORDER BY b.dt_cadastro DESC";
+const insertResposta = "INSERT INTO ponto_coleta_comentario(id_pai, dt_comentario, comentario, id_usuario, id_ponto) VALUES ($1, $2, $3, $4, $5)";
+const getResposta = "SELECT c.id_ponto, c.id_usuario, u.nome, c.dt_comentario, c.comentario, c.id, c.id_pai FROM ponto_coleta_comentario c INNER JOIN usuario u ON c.id_usuario = u.id WHERE id_ponto = $1 AND id_pai IS NOT NULL ORDER BY dt_comentario DESC";
 
 module.exports = {
     addUsuario,
@@ -57,5 +59,7 @@ module.exports = {
     insertComentario,
     getComentario,
     redefinirSenha,
-    pontosFavoritos
+    pontosFavoritos,
+    insertResposta,
+    getResposta
 };

@@ -49,7 +49,24 @@ var script_pagina = function () {
                     botao.classList.add('icon-desabilitado');
                 }
             })
-            console.log(data);
+
+            //cria os comentários
+            data.comentarios.forEach(obj => { // loop sobre os dados retornados da requisição
+                let data = new Date(obj.dt_comentario);
+                let dataFormatada = data.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+                //cria o elemento que recebe os comentarios
+                const divComentario = document.createElement('li');
+                divComentario.classList.add('mdl-list__item', 'mdl-list__item--three-line');
+                divComentario.innerHTML = `
+                    <span class="mdl-list__item-primary-content">
+                        <span id="usuario-comentario" class="titulo-comentario">${obj.nome}</span>
+                        <span id="data-comentario" class="data-comentario">${dataFormatada}</span>
+                        <span id="texto-comentario" class="mdl-list__item-text-body texto-comentario">${obj.comentario}</span>
+                    </span>
+                `;
+                document.querySelector('.mdl-list').appendChild(divComentario);
+            })
         }).catch(error => console.error(error));
 
     //Botão google maps

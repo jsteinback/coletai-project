@@ -104,7 +104,16 @@ var script_pagina = function () {
                 }
             })
             .then(data => {
-                window.location.href = data.redirectUrl; //redireciona pra página home autenticada
+                const snackbarContainer = document.querySelector('#snackbar-container-success')
+                const snackbarData = {
+                    message: data.message,
+                    timeout: 2000
+                }
+                snackbarContainer.MaterialSnackbar.showSnackbar(snackbarData);
+
+                setTimeout(() => {
+                    window.location.href = data.redirectUrl; // Redireciona para a página home autenticada
+                }, 2500);
             })
             .catch(error => console.error(error));
 
