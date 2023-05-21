@@ -316,6 +316,7 @@ const getDetalhesPontoAuth = async (req, res) => {
     const id = parseInt(req.params.id);
     let favorito = false;
     let comentarios;
+    let respostas;
 
     // validar usuário conectado
     const token = req.headers["authorization"];
@@ -336,6 +337,9 @@ const getDetalhesPontoAuth = async (req, res) => {
         const getRespostas = await pool.query(queries.getResposta, [id]);
         if (getRespostas.rows[0]) {
             respostas = getRespostas.rows;
+            comentarios.forEach(comentario => {
+                comentario.respostas = respostas.filter(resposta => resposta.id_pai === comentario.id);
+              });
         }
 
         // verifica se é favorito

@@ -72,6 +72,7 @@ var script_pagina = function () {
                 //cria o elemento que recebe os comentarios
                 const divComentario = document.createElement('li');
                 divComentario.classList.add('mdl-list__item', 'mdl-list__item--three-line');
+                divComentario.id = `comentario-${obj.id}`;
                 divComentario.innerHTML = `
                     <span class="mdl-list__item-primary-content">
                         <span id="usuario-comentario" class="titulo-comentario">${obj.nome}</span>
@@ -84,18 +85,35 @@ var script_pagina = function () {
                         </button>
                     </span>
                 `;
-                document.querySelector('.mdl-list').appendChild(divComentario);
+                document.querySelector('.ul-comentarios').appendChild(divComentario);
+
+                // Criação das respostas
+                if (obj.respostas) {
+                    obj.respostas.forEach(resposta => {
+                        const divRespostas = document.createElement('ul'); // Cria um elemento para armazenar as respostas
+                        divRespostas.classList.add('mdl-list', 'ul-respostas');
+                        const comentarioAtual = document.querySelector(`#comentario-${obj.id}`); // Procura o elemento de comentário atual pelo ID do comentário
+                        comentarioAtual.appendChild(divRespostas); // Vincula o elemento de respostas dentro do elemento de comentário atual
+                        const respostasComentarioAtual = obj.respostas.filter(res => res.id_pai === obj.id); // Procura as respostas para o comentário atual
+                        // Cria as respostas
+                        respostasComentarioAtual.forEach(res => {
+                            let dataResposta = new Date(res.dt_comentario);
+                            let dataRespostaFormatada = dataResposta.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+                            const divResposta = document.createElement('li');
+                            divResposta.classList.add('mdl-list__item', 'mdl-list__item--three-line', 'li-respostas');
+                            divResposta.innerHTML = `
+                            <span class="mdl-list__item-primary-content">
+                                <span id="usuario-comentario" class="titulo-comentario">${res.nome}</span>
+                                <span id="data-comentario" class="data-comentario">${dataRespostaFormatada}</span>
+                                <span id="texto-comentario" class="mdl-list__item-text-body texto-comentario">${res.comentario}</span>
+                            </span>`;
+                            divRespostas.appendChild(divResposta); // Vincula o elemento de resposta dentro do elemento de respostas
+                        });
+                    });
+                }
             })
-
-            //criar as respostas
-            data.respostas.forEach(obj => { // loop sobre os dados retornados da requisição
-                let data = new Date(obj.dt_comentario);
-                let dataFormatada = data.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-
-                
-            })
-
         })
+
 
     //Botão google maps
     document.getElementById('btn-localizacao').addEventListener('click', () => {
