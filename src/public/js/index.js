@@ -14,11 +14,12 @@ var script_pagina = function () {
             return response.json();
         })
         .then(data => {
-                data.forEach(obj => { // loop sobre os dados retornados da requisição
-                    const novaDiv = document.createElement('div'); // cria um novo elemento div
-                    novaDiv.classList.add('mdl-cell', 'mdl-cell--3-col', 'mdl-card', 'mdl-shadow--3dp'); // define suas classes
-                    novaDiv.innerHTML = `
+            data.forEach(obj => { // loop sobre os dados retornados da requisição
+                const novaDiv = document.createElement('div'); // cria um novo elemento div
+                novaDiv.classList.add('mdl-cell', 'mdl-cell--3-col', 'mdl-card', 'mdl-shadow--3dp'); // define suas classes
+                novaDiv.innerHTML = `
                         <div class="mdl-card__title" id="nome-ponto">
+                            <i class="material-icons icon-ponto">place</i>
                             <h4 class="mdl-card__title-text font-color-destaque">${obj.nome}</h4>
                         </div>
                         <div class="mdl-card__supporting-text">
@@ -33,8 +34,8 @@ var script_pagina = function () {
                         </div>
                     `; // define o conteúdo da nova div
 
-                    document.getElementById('div-pai').appendChild(novaDiv); // adiciona a nova div ao elemento pai
-                })
+                document.getElementById('div-pai').appendChild(novaDiv); // adiciona a nova div ao elemento pai
+            })
         })
         .catch(error => console.error(error));
 

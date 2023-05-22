@@ -24,6 +24,7 @@ var script_pagina = function () {
                 novaDiv.classList.add('mdl-cell', 'mdl-cell--3-col', 'mdl-card', 'mdl-shadow--3dp'); // define suas classes
                 novaDiv.innerHTML = `
                 <div class="mdl-card__title" id="nome-ponto">
+                    <i class="material-icons icon-ponto">place</i>
                     <h4 class="mdl-card__title-text font-color-destaque">${obj.nome}</h4>
                 </div>
                 <div class="mdl-card__supporting-text">
