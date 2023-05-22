@@ -88,6 +88,7 @@ var script_pagina = function () {
                 document.querySelector('.ul-comentarios').appendChild(divComentario);
 
                 // Criação das respostas
+                /*
                 if (obj.respostas) {
                     obj.respostas.forEach(resposta => {
                         const divRespostas = document.createElement('ul'); // Cria um elemento para armazenar as respostas
@@ -110,7 +111,7 @@ var script_pagina = function () {
                             divRespostas.appendChild(divResposta); // Vincula o elemento de resposta dentro do elemento de respostas
                         });
                     });
-                }
+                }*/
             })
         })
 
