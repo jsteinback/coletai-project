@@ -333,15 +333,6 @@ const getDetalhesPontoAuth = async (req, res) => {
             comentarios = getComentarios.rows;
         }
 
-        //busca as respostas dos comentário
-        const getRespostas = await pool.query(queries.getResposta, [id]);
-        if (getRespostas.rows[0]) {
-            respostas = getRespostas.rows;
-            comentarios.forEach(comentario => {
-                comentario.respostas = respostas.filter(resposta => resposta.id_pai === comentario.id);
-              });
-        }
-
         // verifica se é favorito
         const checkFavorito = await pool.query(queries.checkFavorito, [idUsuario, id]);
         if (checkFavorito.rows[0]) {
@@ -354,10 +345,10 @@ const getDetalhesPontoAuth = async (req, res) => {
         if (checkClassificacao.rows[0]) {
             // tem classificação, manda no results
             const classificacao = checkClassificacao.rows[0].classificacao;
-            return res.status(200).json({ ...results.rows[0], comentarios, respostas, favorito, classificacao });
+            return res.status(200).json({ ...results.rows[0], comentarios, favorito, classificacao });
         } else {
             // não tem classificação
-            return res.status(200).json({ ...results.rows[0], comentarios, respostas, favorito });
+            return res.status(200).json({ ...results.rows[0], comentarios, favorito });
         }
     } catch (error) {
         console.error(error);
@@ -504,23 +495,6 @@ const addComentario = async (req, res) => {
 
 };
 
-const addResposta = async (req, res) => {
-    const { comentario, idPai, idPonto } = req.body;
-    const idUsuario = req.idUsuario;
-    //const idPai = parseInt(req.params.id);
-
-    try {
-        const data = new Date();
-        pool.query(queries.insertResposta, [idPai, data, comentario, idUsuario, idPonto], (error, results) => {
-            return res.status(200).json({ message: 'Resposta adicionada' });
-        })
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ error: 'Erro ao executar a consulta.' });
-    }
-
-};
-
 const esqueciSenha = async (req, res) => {
     const email = req.body.email;
 
@@ -636,6 +610,5 @@ module.exports = {
     getRedefinirSenha,
     redefinirSenha,
     getPontosFavoritos,
-    pontosFavoritos,
-    addResposta
+    pontosFavoritos
 };

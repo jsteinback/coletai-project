@@ -47,7 +47,6 @@ router.post('/editar-ponto-de-coleta', controller.editPonto);
 router.post('/rate-ponto-de-coleta/:id', checkToken, controller.ratePonto);
 router.post('/fav-ponto-de-coleta/:id', checkToken, controller.favPonto);
 router.post('/add-comentario/:id', checkToken, controller.addComentario);
-router.post('/add-resposta', checkToken, controller.addResposta);
 router.post('/esqueci-senha', controller.esqueciSenha);
 router.post('/redefinir-senha-post', controller.redefinirSenha);
 
