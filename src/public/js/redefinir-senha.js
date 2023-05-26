@@ -43,7 +43,6 @@ var script_pagina = function () {
                 }
                 document.getElementById('senha').value = null;
                 document.getElementById('checkSenha').value = null;
-                localStorage.removeItem('token');
                 snackbarContainer.MaterialSnackbar.showSnackbar(snackbarData);
             })
             .catch(error => console.error(error));
