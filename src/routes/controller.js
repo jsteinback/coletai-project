@@ -512,7 +512,7 @@ const esqueciSenha = async (req, res) => {
                 to: email,
                 from: 'appcoletai@gmail.com',
                 subject: 'Recuperação de Senha Coletai',
-                text: `Para redefinir sua senha, clique no link a seguir: http://localhost:3000/redefinir-senha?token=${token}`,
+                text: `Para redefinir sua senha, clique no link a seguir: https://coletaiapp.herokuapp.com/redefinir-senha?token=${token}`,
             }
 
             await sgMail.send(msg);
